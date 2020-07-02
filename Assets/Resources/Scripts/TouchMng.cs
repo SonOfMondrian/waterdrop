@@ -68,11 +68,15 @@ public class TouchMng : MonoBehaviour
             Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(touchPos);
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            //Ray ray2 = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
 
+            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.yellow, 0.2f);
             //뭔가 맞으면
             if (Physics.Raycast(ray, out hit))
             {
+                
+
                 if (hit.collider != null)
                     raytext.GetComponent<pos>().Print(hit.collider.name + " / Phone 충돌");
                 if (hit.collider.tag == "Panel")
@@ -81,6 +85,10 @@ public class TouchMng : MonoBehaviour
                     if (Input.GetTouch(0).phase == TouchPhase.Began)
                     {
                         print("Bagan");
+
+                        //선택된 오브젝트를 해제
+                        b_isSelect = false;
+                        SelectedObject = null;
                     }
                     else if (Input.GetTouch(0).phase == TouchPhase.Moved)
                     {
@@ -111,16 +119,18 @@ public class TouchMng : MonoBehaviour
                 {
                     if (Input.GetTouch(0).phase == TouchPhase.Began)
                     {
-                        print("Bagan");
+                        print("기믹 Bagan");
+                        b_isSelect = true;
+                        SelectedObject = hit.collider.gameObject;
                     }
                     else if (Input.GetTouch(0).phase == TouchPhase.Moved)
                     {
-                        print("Moved");
+                        print("기믹 Moved");
 
                     }
                     else if (Input.GetTouch(0).phase == TouchPhase.Ended)
                     {
-                        print("Ended");
+                        print("기믹 Ended");
                         
                     }
                 }
