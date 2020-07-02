@@ -73,8 +73,6 @@ public class TouchMng : MonoBehaviour
             //뭔가 맞으면
             if (Physics.Raycast(ray, out hit))
             {
-                
-
                 if (hit.collider != null)
                     raytext.GetComponent<pos>().Print(hit.collider.name + " / Phone 충돌");
                 if (hit.collider.tag == "Panel")
@@ -83,30 +81,10 @@ public class TouchMng : MonoBehaviour
                     if (Input.GetTouch(0).phase == TouchPhase.Began)
                     {
                         print("Bagan");
-                        //lastpos = new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, cam.transform.position.z);
-
-
-                        //mousestart = new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, cam.transform.position.z);
-                        //mousestart = Camera.main.ScreenToWorldPoint(mousestart);
-                        //mousestart.z = Camera.main.transform.position.z;
                     }
                     else if (Input.GetTouch(0).phase == TouchPhase.Moved)
                     {
                         print("Moved");
-                        //newpos= new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, cam.transform.position.z);
-                        //Vector3 delta = cam.ScreenToWorldPoint(lastpos - newpos);
-                        //Vector3 move = new Vector3(delta.x * MovePower, delta.y * MovePower, 0);
-                        ////cam.transform.Translate(move, Space.World);
-                        //cam.transform.position = move;
-                        //lastpos = newpos;
-
-
-                        //var mousemove = new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, cam.transform.position.z);
-                        //mousemove = Camera.main.ScreenToWorldPoint(mousemove);
-                        //mousemove.z = Camera.main.transform.position.z;
-
-                        //cam.transform.position = cam.transform.position + (mousemove - mousestart);
-                        //===============================================================
 
                         if (prevPos == Vector2.zero)
                         {
@@ -124,9 +102,6 @@ public class TouchMng : MonoBehaviour
                     else if (Input.GetTouch(0).phase == TouchPhase.Ended)
                     {
                         print("Ended");
-                        //lastpos = Vector3.zero;
-                       // newpos = Vector3.zero;
-
                         prevPos = Vector2.zero;
                         prevDistance = 0;
                     }
@@ -134,7 +109,20 @@ public class TouchMng : MonoBehaviour
                 }
                 else if (hit.collider.tag == "Gimmick")
                 {
-                    // if()
+                    if (Input.GetTouch(0).phase == TouchPhase.Began)
+                    {
+                        print("Bagan");
+                    }
+                    else if (Input.GetTouch(0).phase == TouchPhase.Moved)
+                    {
+                        print("Moved");
+
+                    }
+                    else if (Input.GetTouch(0).phase == TouchPhase.Ended)
+                    {
+                        print("Ended");
+                        
+                    }
                 }
             }
         }
