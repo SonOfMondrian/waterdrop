@@ -21,7 +21,7 @@ public class pos : MonoBehaviour
             return; 
 
         
-        if (SystemInfo.deviceType==DeviceType.Handheld&& istouch)
+        if ( istouch)
             GetComponent<Text>().text = Input.GetTouch(0).position.ToString() + ", " + Input.touchCount.ToString();
         else if(a!=null)
             GetComponent<Text>().text = a.transform.position.ToString();

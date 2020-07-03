@@ -18,11 +18,15 @@ public class Water1 : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name == "Point")
+        
+            
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "Point")
         {
             Destroy(this.gameObject);
             Debug.Log("호로록");
         }
-            
     }
 }

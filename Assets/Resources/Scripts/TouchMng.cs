@@ -9,6 +9,13 @@ public class TouchMng : MonoBehaviour
     Vector3 mousestart;
     float m_fOldToucDis = 0f;       // 터치 이전 거리를 저장합니다.
     float m_fFieldOfView = 60f;     // 카메라의 FieldOfView의 기본값을 60으로 정합니다.
+
+    /// <summary>
+    /// 줌 이전 프레임 두 점 사이의 거리
+    /// </summary>
+    float ZoomLastdis = 0;
+    //줌 현재 프레임 두 점 사이의 거리
+    float ZoomNewposdis = 0;
     public float MovePower;
     public float ZoomPower;
     Camera cam;
@@ -16,8 +23,8 @@ public class TouchMng : MonoBehaviour
     public int nTouch;
     float prevDistance = 0;
 
-    public Vector3 lastpos;
-    public Vector3 newpos;
+    Vector3 lastpos;
+    Vector3 newpos;
     TouchPhase touchphase = TouchPhase.Ended;
 
     public GameObject raytext;
@@ -30,6 +37,7 @@ public class TouchMng : MonoBehaviour
     [SerializeField]
     private bool b_isSelect;
     private bool b_isObDrag;
+
 
     void Awake()
     {
@@ -69,29 +77,34 @@ public class TouchMng : MonoBehaviour
 
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-            //Ray ray2 = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
 
-            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.yellow, 0.2f);
+
+            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.yellow, 0.01f);
             //뭔가 맞으면
             if (Physics.Raycast(ray, out hit))
             {
-                
-
                 if (hit.collider != null)
                     raytext.GetComponent<pos>().Print(hit.collider.name + " / Phone 충돌");
+
                 if (hit.collider.tag == "Panel")
                 {
-                    //raytext.GetComponent<pos>().Print("드래그");
+
                     if (Input.GetTouch(0).phase == TouchPhase.Began)
                     {
                         print("Bagan");
 
                         //선택된 오브젝트를 해제
                         b_isSelect = false;
+                        SelectedObject.GetComponent<MoveScript>().isSelect = false;
+                        SelectedObject.GetComponent<MoveScript>().isPressed = false;
                         SelectedObject = null;
+                        
+
+
                     }
-                    else if (Input.GetTouch(0).phase == TouchPhase.Moved)
+                    else if (Input.GetTouch(0).phase == TouchPhase.Moved && SelectedObject==null)
                     {
+                        raytext.GetComponent<pos>().Print("드래그");
                         print("Moved");
 
                         if (prevPos == Vector2.zero)
@@ -115,58 +128,83 @@ public class TouchMng : MonoBehaviour
                     }
 
                 }
-                else if (hit.collider.tag == "Gimmick")
-                {
-                    if (Input.GetTouch(0).phase == TouchPhase.Began)
-                    {
-                        print("기믹 Bagan");
-                        b_isSelect = true;
-                        SelectedObject = hit.collider.gameObject;
-                    }
-                    else if (Input.GetTouch(0).phase == TouchPhase.Moved)
-                    {
-                        print("기믹 Moved");
+                //else if (hit.collider.tag == "Gimmick")
+                //{
+                //    if (Input.GetTouch(0).phase == TouchPhase.Began)
+                //    {
+                //        print("기믹 Bagan");
+                //        b_isSelect = true;
+                //        SelectedObject = hit.collider.gameObject;
+                //    }
+                //    else if (Input.GetTouch(0).phase == TouchPhase.Moved)
+                //    {
+                //        print("기믹 Moved");
 
-                    }
-                    else if (Input.GetTouch(0).phase == TouchPhase.Ended)
-                    {
-                        print("기믹 Ended");
+                //        //hit.collider.transform = 
                         
-                    }
-                }
+
+                //    }
+                //    else if (Input.GetTouch(0).phase == TouchPhase.Ended)
+                //    {
+                //        print("기믹 Ended");
+
+                //    }
+                //}
             }
         }
         //2개 동시 터치일때
-        else if(nTouch==2)
+        else if (nTouch == 2)
         {
-            Vector3 touchPos1 = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-            Vector3 touchPos2 = Camera.main.ScreenToWorldPoint(Input.GetTouch(1).position);
+
+            Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+
             RaycastHit hit1;
             RaycastHit hit2;
-            Ray ray1 = Camera.main.ScreenPointToRay(touchPos1);
-            Ray ray2 = Camera.main.ScreenPointToRay(touchPos2);
+            Ray ray1 = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            Ray ray2 = Camera.main.ScreenPointToRay(Input.GetTouch(1).position);
 
-            if(Physics.Raycast(ray1, out hit1)&& Physics.Raycast(ray2, out hit2))
+            Debug.DrawRay(ray1.origin, ray1.direction * 100f, Color.yellow, 0.01f);
+            Debug.DrawRay(ray2.origin, ray2.direction * 100f, Color.yellow, 0.01f);
+
+
+            if ((Input.GetTouch(0).phase == TouchPhase.Stationary && Input.GetTouch(1).phase == TouchPhase.Began) ||
+                (Input.GetTouch(0).phase == TouchPhase.Began && Input.GetTouch(1).phase == TouchPhase.Stationary) ||
+                (Input.GetTouch(0).phase == TouchPhase.Began && Input.GetTouch(1).phase == TouchPhase.Began))
             {
-                if(hit1.collider.tag=="Panel"&& hit2.collider.tag == "Panel")
-                {
-                    
-
-                    if (Input.GetTouch(0).phase == TouchPhase.Began)
-                    {
-                    }
-                    else if (Input.GetTouch(0).phase == TouchPhase.Moved)
-                    {
-                        raytext.GetComponent<pos>().Print("줌아웃");
-                    }
-                    else if (Input.GetTouch(0).phase == TouchPhase.Ended)
-                    {
-
-                    }
-                }
+                print("Zoom Began");
+                //ZoomLastdis = Vector3.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
             }
+            else if (Input.GetTouch(0).phase == TouchPhase.Moved && Input.GetTouch(1).phase == TouchPhase.Moved)
+            {
+                raytext.GetComponent<pos>().Print("줌아웃");
+                print("Zoom Moved");
 
 
+                if(ZoomLastdis==0)
+                {
+                    ZoomLastdis = Vector3.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
+                    return;
+                }
+                ZoomNewposdis = Vector3.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
+
+                float delta = ZoomLastdis - ZoomNewposdis;
+                float FOV = cam.fieldOfView;
+                FOV += delta * ZoomPower;
+
+                if (FOV >= 100)
+                    FOV = 100;
+                else if (FOV <= 16)
+                    FOV = 16;
+                cam.fieldOfView = FOV;
+
+                ZoomLastdis = ZoomNewposdis;
+            }
+            else if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(1).phase == TouchPhase.Ended)
+            {
+                print("Zoom Ended");
+                prevPos = Vector2.zero;
+                ZoomLastdis = 0;
+            }
         }
     }
 

@@ -13,8 +13,12 @@ public class MoveScript : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
     public GameObject debug;
     public bool isDrag;
     public bool isSelect;
+    public bool isPressed;
     GameObject SlectedImage;
-    float deltaX = 0, deltaY = 0;
+
+    Touch touch;
+    public float speedModifier;
+
     void Awake()
     {
         SlectedImage = transform.Find("Selected").gameObject;
@@ -22,68 +26,51 @@ public class MoveScript : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
     }
     void Start()
     {
-        //thisgob = this.gameObject;
+        speedModifier = 0.01f;
     }
 
     void Update()
     {
-        ////debug.GetComponent<pos>().Print("Raycase Hit!");
-        //if (Input.touchCount > 0)
-        //{
-        //    Vector3 touchPos = new Vector3(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, 0);
+        //debug.GetComponent<pos>().Print("Raycase Hit!");
+        if (Input.touchCount == 1)
+        {
+            touch = Input.GetTouch(0);
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
 
-        //    Ray ray = Camera.main.ScreenPointToRay(touchPos);
-        //    print(ray);
 
-        //    RaycastHit hit;
+            if(Physics.Raycast(ray,out hit,Mathf.Infinity))
+            {
+                //print(hit.point);
+                if (hit.collider.tag == "Gimmick")
+                {
+                    if (touch.phase == TouchPhase.Began)
+                    {
+                        TouchMng.instance.SelectObject(this.gameObject);
+                        isSelect = true;
+                        isPressed = true;
+                    }
+                    if (touch.phase == TouchPhase.Moved)
+                    {
+                        print("기믹 이동중");
+                        debug.GetComponent<pos>().Print("Gimmick Moving!");
 
-        //    //레이 쏴서 먼가 맞으면
-        //    if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-        //    {
-        //        debug.GetComponent<pos>().Print(hit.collider.name + " Raycast Hit!");
-        //        TouchMng.instance.SetDrag(true);
+                        //transform.position = new Vector3(hit.point.x, hit.point.y, transform.position.z);
+                    }
+                }
+            }
+            if (touch.phase == TouchPhase.Moved && isSelect)
+            {
+                transform.position = new Vector3(hit.point.x, hit.point.y, transform.position.z);
+            }
+            if (touch.phase == TouchPhase.Ended)
+            {
+                isPressed = false;
+            }
 
-                
-        //        if (Input.GetTouch(0).phase == TouchPhase.Began)
-        //        {
-        //            debug.GetComponent<pos>().Print(hit.collider.name + " Began!");
 
-        //            isSelect = true;
-        //            TouchMng.instance.SelectObject(this.gameObject);
-        //            deltaX = touchPos.x - transform.position.x;
-        //            deltaY = touchPos.y - transform.position.y;
 
-        //        }
-        //        else if (Input.GetTouch(0).phase == TouchPhase.Moved)    // 터치하고 움직이믄 발생한다.
-        //        {
-        //            debug.GetComponent<pos>().Print(hit.collider.name + " Moved!");
-
-        //            Vector3 mousepos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
-
-        //            transform.position = Camera.main.ScreenToWorldPoint(mousepos)-new Vector3(deltaX,deltaY,-10);
-
-        //        }
-
-        //        else if (Input.GetTouch(0).phase == TouchPhase.Ended)    // 터치 따악 떼면 발생한다.
-        //        {
-        //            debug.GetComponent<pos>().Print(hit.collider.name + " Ended!");
-
-        //            TouchMng.instance.SetDrag(false);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        debug.GetComponent<pos>().Print("Nothing Hit!");
-        //        DeselectObject();
-        //    }
-        //}
-
-        //if (isSelect)
-        //{
-        //    SlectedImage.SetActive(true);
-        //}
-        //else
-        //    SlectedImage.SetActive(false);
+        }
     }
     public void select()
     {
