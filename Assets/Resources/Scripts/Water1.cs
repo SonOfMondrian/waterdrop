@@ -7,7 +7,7 @@ public class Water1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 0.7f;
     }
 
     // Update is called once per frame
@@ -15,18 +15,5 @@ public class Water1 : MonoBehaviour
     {
         if(transform.position.y <=-10)
             Destroy(this.gameObject);
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-            
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.name == "Point")
-        {
-            Destroy(this.gameObject);
-            Debug.Log("호로록");
-        }
     }
 }

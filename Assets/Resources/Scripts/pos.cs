@@ -21,8 +21,20 @@ public class pos : MonoBehaviour
             return; 
 
         
-        if ( istouch)
-            GetComponent<Text>().text = Input.GetTouch(0).position.ToString() + ", " + Input.touchCount.ToString();
+        //if (istouch)
+        //{
+        //    RaycastHit hit;
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+        //    Physics.Raycast(ray, out hit);
+        //    GetComponent<Text>().text = hit.point.ToString();
+        //    //if (SystemInfo.deviceType == DeviceType.Handheld)
+        //    //{
+                
+        //    //}
+        //    //else
+        //    //    GetComponent<Text>().text = "Mouse: " + Input.mousePosition.ToString();
+        //}
+            
         else if(a!=null)
             GetComponent<Text>().text = a.transform.position.ToString();
     }

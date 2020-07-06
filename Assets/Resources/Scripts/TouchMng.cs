@@ -6,9 +6,6 @@ using UnityEngine;
 public class TouchMng : MonoBehaviour
 {
     public static TouchMng instance;
-    Vector3 mousestart;
-    float m_fOldToucDis = 0f;       // 터치 이전 거리를 저장합니다.
-    float m_fFieldOfView = 60f;     // 카메라의 FieldOfView의 기본값을 60으로 정합니다.
 
     /// <summary>
     /// 줌 이전 프레임 두 점 사이의 거리
@@ -23,9 +20,6 @@ public class TouchMng : MonoBehaviour
     public int nTouch;
     float prevDistance = 0;
 
-    Vector3 lastpos;
-    Vector3 newpos;
-    TouchPhase touchphase = TouchPhase.Ended;
 
     public GameObject raytext;
 
@@ -37,6 +31,11 @@ public class TouchMng : MonoBehaviour
     [SerializeField]
     private bool b_isSelect;
     private bool b_isObDrag;
+    [SerializeField]
+    private bool b_isRotation;
+    [SerializeField]
+    private bool b_isCameraMoving;
+
 
 
     void Awake()
@@ -86,75 +85,51 @@ public class TouchMng : MonoBehaviour
                 if (hit.collider != null)
                     raytext.GetComponent<pos>().Print(hit.collider.name + " / Phone 충돌");
 
+                if (b_isRotation)
+                    return;
+
                 if (hit.collider.tag == "Panel")
                 {
 
                     if (Input.GetTouch(0).phase == TouchPhase.Began)
                     {
-                        print("Bagan");
+                        //print("Bagan");
+                        b_isCameraMoving = true;
+
 
                         //선택된 오브젝트를 해제
-                        b_isSelect = false;
-                        SelectedObject.GetComponent<MoveScript>().isSelect = false;
-                        SelectedObject.GetComponent<MoveScript>().isPressed = false;
-                        SelectedObject = null;
-                        
-
-
-                    }
-                    else if (Input.GetTouch(0).phase == TouchPhase.Moved && SelectedObject==null)
-                    {
-                        raytext.GetComponent<pos>().Print("드래그");
-                        print("Moved");
-
-                        if (prevPos == Vector2.zero)
-                        {
-                            prevPos = Input.GetTouch(0).position;
-                            return;
-                        }
-                        Vector2 dir = (Input.GetTouch(0).position - prevPos);
-                        Vector3 vec = new Vector3(dir.x, dir.y, 0);
-
-                        cam.transform.position -= cam.fieldOfView * 0.01f * vec * MovePower * Time.deltaTime;
-
-
-                        prevPos = Input.GetTouch(0).position;
-                    }
-                    else if (Input.GetTouch(0).phase == TouchPhase.Ended)
-                    {
-                        print("Ended");
-                        prevPos = Vector2.zero;
-                        prevDistance = 0;
+                        DisableObject();
                     }
 
                 }
-                //else if (hit.collider.tag == "Gimmick")
-                //{
-                //    if (Input.GetTouch(0).phase == TouchPhase.Began)
-                //    {
-                //        print("기믹 Bagan");
-                //        b_isSelect = true;
-                //        SelectedObject = hit.collider.gameObject;
-                //    }
-                //    else if (Input.GetTouch(0).phase == TouchPhase.Moved)
-                //    {
-                //        print("기믹 Moved");
-
-                //        //hit.collider.transform = 
-                        
-
-                //    }
-                //    else if (Input.GetTouch(0).phase == TouchPhase.Ended)
-                //    {
-                //        print("기믹 Ended");
-
-                //    }
-                //}
+                if (Input.GetTouch(0).phase == TouchPhase.Moved && SelectedObject == null &&b_isCameraMoving)
+                {
+                    raytext.GetComponent<pos>().Print("드래그");
+                    print("드래깅");
+                    if (prevPos == Vector2.zero)
+                    {
+                        prevPos = Input.GetTouch(0).position;
+                        return;
+                    }
+                    Vector2 dir = (Input.GetTouch(0).position - prevPos);
+                    Vector3 vec = new Vector3(dir.x, dir.y, 0);
+                    cam.transform.position -= cam.fieldOfView * 0.01f * vec * MovePower * Time.deltaTime;
+                    prevPos = Input.GetTouch(0).position;
+                }
+                else if (Input.GetTouch(0).phase == TouchPhase.Ended)
+                {
+                    //print("Ended");
+                    prevPos = Vector2.zero;
+                    prevDistance = 0;
+                    b_isCameraMoving = false;
+                }
             }
         }
         //2개 동시 터치일때
         else if (nTouch == 2)
         {
+            b_isCameraMoving = false;
+            DisableObject();
 
             Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
@@ -171,13 +146,13 @@ public class TouchMng : MonoBehaviour
                 (Input.GetTouch(0).phase == TouchPhase.Began && Input.GetTouch(1).phase == TouchPhase.Stationary) ||
                 (Input.GetTouch(0).phase == TouchPhase.Began && Input.GetTouch(1).phase == TouchPhase.Began))
             {
-                print("Zoom Began");
+                //print("Zoom Began");
                 //ZoomLastdis = Vector3.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
             }
             else if (Input.GetTouch(0).phase == TouchPhase.Moved && Input.GetTouch(1).phase == TouchPhase.Moved)
             {
                 raytext.GetComponent<pos>().Print("줌아웃");
-                print("Zoom Moved");
+                //print("Zoom Moved");
 
 
                 if(ZoomLastdis==0)
@@ -201,11 +176,27 @@ public class TouchMng : MonoBehaviour
             }
             else if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(1).phase == TouchPhase.Ended)
             {
-                print("Zoom Ended");
+                //print("Zoom Ended");
                 prevPos = Vector2.zero;
                 ZoomLastdis = 0;
             }
         }
+    }
+
+    /// <summary>
+    /// 현재 선택된 기믹 오브젝트를 해제함
+    /// </summary>
+    public void DisableObject()
+    {
+        if (SelectedObject != null)
+        {
+            b_isSelect = false;
+            SelectedObject.GetComponent<MoveScript>().isSelect = false;
+            SelectedObject.GetComponent<MoveScript>().isPressed = false;
+            SelectedObject.GetComponent<MoveScript>().DeselectObject();
+            SelectedObject = null;
+        }
+        
     }
 
     public void SelectObject(GameObject ob)
@@ -213,9 +204,17 @@ public class TouchMng : MonoBehaviour
         SelectedObject = ob;
         b_isSelect = true;
     }
+    public GameObject GetSelectedObject()
+    {
+        return SelectedObject;
+    }
     public void SetDrag(bool b)
     {
         b_isObDrag = b;
+    }
+    public void SetRotation(bool b)
+    {
+        b_isRotation = b;
     }
     private void DeselectOB()
     {
@@ -223,67 +222,6 @@ public class TouchMng : MonoBehaviour
         //SelectedObject.GetComponent<MoveScript>().DeselectObject();
     }
 
-    //public void Drag()
-    //{
-
-
-    //    //터치가 하나이고, 움직이는 중이라면 드래그한 방향으로 카메라를 이동시킨다.
-    //    Debug.Log("카메라 이동");
-    //    if (nTouch == 1 && Input.GetTouch(0).phase==TouchPhase.Ended)
-    //    {
-    //        Vector3 touchPos= Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-    //        //Vector2 touchPos2D = new Vector2(touchPos.x, touchPos.y);
-    //        RaycastHit hit;
-    //        Ray ray = Camera.main.ScreenPointToRay(touchPos);
-
-    //        //뭔가 맞으면
-    //        if (Physics.Raycast(ray, out hit))
-    //        {
-    //            if (hit.collider != null)
-    //                raytext.GetComponent<pos>().Print(hit.collider.name + "충돌");
-    //        }
-
-    //        //if (prevPos == Vector2.zero)
-    //        //{
-    //        //    prevPos = Input.GetTouch(0).position;
-    //        //    return;
-    //        //}
-
-    //        //Vector2 dir = (Input.GetTouch(0).position - prevPos);
-    //        //Vector3 vec = new Vector3(dir.x, dir.y, 0);
-
-    //        //cam.transform.position -= cam.fieldOfView*0.01f* vec * MovePower * Time.deltaTime;
-
-
-    //        //prevPos = Input.GetTouch(0).position;
-    //    }
-    //    else if(nTouch==2)
-    //    {
-    //        //선택된 오브젝트 해제
-    //        DeselectOB();
-    //        if (prevDistance==0)
-    //        {
-    //            prevDistance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
-    //            return;
-    //        }
-    //        float curDistance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
-    //        float move = prevDistance - curDistance;
-
-    //        float FOV = cam.fieldOfView;
-    //        FOV += move * ZoomPower * Time.deltaTime;
-
-
-    //        if (FOV >= 100)
-    //            FOV = 100;
-    //        else if (FOV <= 20)
-    //            FOV = 20;
-    //        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, FOV, 1.0f);
-
-
-    //        prevDistance = curDistance;
-    //    }
-
-    //}
     public void ExitDrag()
     {
         prevPos = Vector2.zero;

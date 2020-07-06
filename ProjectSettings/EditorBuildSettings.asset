@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/Ingame.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Resources/Scenes/Clear.unity
+    guid: 02e91ca1bb159134eb8340bec5c09fa2
   m_configObjects: {}

@@ -8,25 +8,28 @@ using UnityEngine.UIElements;
 /// <summary>
 /// 해당 스크립트는 기믹을 이동, 회전만을 위한 스크립트입니다. 그 외에는 사용되지 않습니다.
 /// </summary>
-public class MoveScript : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
+public class MoveScript : MonoBehaviour
 {
     public GameObject debug;
     public bool isDrag;
     public bool isSelect;
     public bool isPressed;
-    GameObject SlectedImage;
-
+    GameObject SelectedImage;
+    public GameObject selectedobject;
+    RaycastHit hit;
     Touch touch;
-    public float speedModifier;
+
+    Vector3 Downpos;
+    float deltaX, deltaY;
 
     void Awake()
     {
-        SlectedImage = transform.Find("Selected").gameObject;
+        SelectedImage = transform.Find("Rotation").gameObject;
 
     }
     void Start()
     {
-        speedModifier = 0.01f;
+
     }
 
     void Update()
@@ -35,82 +38,61 @@ public class MoveScript : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
         if (Input.touchCount == 1)
         {
             touch = Input.GetTouch(0);
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            
+            Ray ray;
+
+            if (SystemInfo.deviceType == DeviceType.Desktop)
+                ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            else
+                ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+
+            //Offset이동을 위한 코드
+            Downpos = Camera.main.ScreenToWorldPoint(touch.position);
 
 
-            if(Physics.Raycast(ray,out hit,Mathf.Infinity))
+            if (Physics.Raycast(ray,out hit,Mathf.Infinity))
             {
                 //print(hit.point);
                 if (hit.collider.tag == "Gimmick")
                 {
                     if (touch.phase == TouchPhase.Began)
                     {
-                        TouchMng.instance.SelectObject(this.gameObject);
+                        TouchMng.instance.SelectObject(hit.collider.gameObject);
+                        DeselectObject();
+                        SelectObject(hit.collider.gameObject);
                         isSelect = true;
                         isPressed = true;
-                    }
-                    if (touch.phase == TouchPhase.Moved)
-                    {
-                        print("기믹 이동중");
-                        debug.GetComponent<pos>().Print("Gimmick Moving!");
 
-                        //transform.position = new Vector3(hit.point.x, hit.point.y, transform.position.z);
+                        deltaX = hit.point.x - TouchMng.instance.GetSelectedObject().transform.position.x;
+                        deltaY = hit.point.y - TouchMng.instance.GetSelectedObject().transform.position.y;
                     }
                 }
             }
-            if (touch.phase == TouchPhase.Moved && isSelect)
+            if (touch.phase == TouchPhase.Moved && isPressed &&isSelect)
             {
-                transform.position = new Vector3(hit.point.x, hit.point.y, transform.position.z);
+                TouchMng.instance.GetSelectedObject().transform.position= new Vector3(hit.point.x - deltaX, hit.point.y - deltaY, transform.position.z);
             }
             if (touch.phase == TouchPhase.Ended)
             {
                 isPressed = false;
             }
-
-
-
         }
     }
-    public void select()
+    /// <summary>
+    /// 선택되면 선택 활성화 원(원을 드래그하여 회전)이 생긴다.
+    /// </summary>
+    public void SelectObject(GameObject select)
     {
-        print("기믹 클릭");
+        print(select.name);
+        //selectedobject = select;
+        select.GetComponent<MoveScript>().SelectedImage.SetActive(true);
+        select.GetComponent<MoveScript>().isSelect = true;
+        
     }
-    //public void OnMouseDown()
-    //{
-    //    isSelect = true;
-    //    TouchMng.instance.SelectObject(this.gameObject);
-    //    Debug.Log("다운");
-    //}
     public void DeselectObject()
     {
-        isSelect = false;
+        SelectedImage.SetActive(false);
+        selectedobject = null;
 
     }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        print("기믹 클릭");
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-
-
-    }
-    //void OnMouseUp()
-    //{
-    //    isDrag = false;
-    //    Debug.Log("업");
-    //}
-    //private void OnMouseDrag()
-    //{
-    //    isDrag = true;
-    //    TouchMng.instance.SetDrag(true);
-
-    //    Debug.Log("드래그");
-    //    Vector3 mousepos = new Vector3(Input.mousePosition.x, Input.mousePosition.y,10);
-
-    //    transform.position = Camera.main.ScreenToWorldPoint(mousepos);
-    //}
 }

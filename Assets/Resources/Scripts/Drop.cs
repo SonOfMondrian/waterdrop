@@ -24,6 +24,6 @@ public class Drop : MonoBehaviour
     }
     public void drop()
     {
-        Instantiate(Water, Point.transform);
+        Instantiate(Water, Point.transform.position,Quaternion.identity);
     }
 }
