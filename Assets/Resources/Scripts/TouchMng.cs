@@ -191,8 +191,7 @@ public class TouchMng : MonoBehaviour
         if (SelectedObject != null)
         {
             b_isSelect = false;
-            SelectedObject.GetComponent<MoveScript>().isSelect = false;
-            SelectedObject.GetComponent<MoveScript>().isPressed = false;
+            b_isRotation = false;
             SelectedObject.GetComponent<MoveScript>().DeselectObject();
             SelectedObject = null;
         }

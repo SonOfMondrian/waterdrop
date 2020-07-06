@@ -23,7 +23,7 @@ public class RotationScript : MonoBehaviour
     void Update()
     {
 
-        print(Input.mousePosition);
+        //print(Input.mousePosition);
     }
     void OnMouseDown()
     {

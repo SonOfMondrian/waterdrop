@@ -57,11 +57,10 @@ public class MoveScript : MonoBehaviour
                 {
                     if (touch.phase == TouchPhase.Began)
                     {
-                        TouchMng.instance.SelectObject(hit.collider.gameObject);
                         DeselectObject();
+                        TouchMng.instance.SelectObject(hit.collider.gameObject);
+                        
                         SelectObject(hit.collider.gameObject);
-                        isSelect = true;
-                        isPressed = true;
 
                         deltaX = hit.point.x - TouchMng.instance.GetSelectedObject().transform.position.x;
                         deltaY = hit.point.y - TouchMng.instance.GetSelectedObject().transform.position.y;
@@ -84,14 +83,17 @@ public class MoveScript : MonoBehaviour
     public void SelectObject(GameObject select)
     {
         print(select.name);
-        //selectedobject = select;
+        
         select.GetComponent<MoveScript>().SelectedImage.SetActive(true);
         select.GetComponent<MoveScript>().isSelect = true;
-        
+        select.GetComponent<MoveScript>().isPressed = true;
+        select.GetComponent<MoveScript>().selectedobject = select;
     }
     public void DeselectObject()
     {
         SelectedImage.SetActive(false);
+        isSelect = false;
+        isPressed = false;
         selectedobject = null;
 
     }
