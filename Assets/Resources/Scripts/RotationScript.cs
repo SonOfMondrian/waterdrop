@@ -40,8 +40,10 @@ public class RotationScript : MonoBehaviour
     void OnMouseDrag()
     {
         //print("Rotation Drag");
+        //오브젝트 이동시에 이동과 회전이 동시에 발생하면서 오브젝트가 떨리는 버그가 발생, 이 조건문으로 이동중일땐 조기리턴시켜 강제로 회전이 불가하게 한다.
+        if (TouchMng.instance.GetisDrag())
+            return;
 
-        TouchMng.instance.SetRotation(true);
         if (SystemInfo.deviceType == DeviceType.Desktop)
             dir = Input.mousePosition - Camera.main.WorldToScreenPoint(Gimmick.transform.position);
         else

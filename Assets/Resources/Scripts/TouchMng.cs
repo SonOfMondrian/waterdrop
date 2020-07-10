@@ -19,9 +19,10 @@ public class TouchMng : MonoBehaviour
     Vector2 prevPos;
     public int nTouch;
     float prevDistance = 0;
-
+    
 
     public GameObject raytext;
+    public GameObject RemoveBtn;
 
     /// <summary>
     /// 현재 선택한 오브젝트
@@ -30,18 +31,23 @@ public class TouchMng : MonoBehaviour
     public GameObject SelectedObject;
     [SerializeField]
     private bool b_isSelect;
+    [SerializeField]
     private bool b_isObDrag;
     [SerializeField]
     private bool b_isRotation;
     [SerializeField]
     private bool b_isCameraMoving;
 
+    public bool b_isShowcasePress;
 
 
     void Awake()
     {
         if (instance == null)
             instance = this;
+
+        RemoveBtn = GameObject.Find("RemoveBtn");
+        RemoveBtn.SetActive(false);
     }
     void Start()
     {
@@ -51,6 +57,10 @@ public class TouchMng : MonoBehaviour
     void Update()
     {
         nTouch = Input.touchCount;
+
+        //GimmickPanel에 있는 오브젝트 누르는 중이면 드래그 안되기하기
+        //if (b_isShowcasePress)
+        //    return;
 
         if (Input.GetMouseButtonDown(0) && SystemInfo.deviceType == DeviceType.Desktop)
         {
@@ -133,8 +143,6 @@ public class TouchMng : MonoBehaviour
 
             Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
-            RaycastHit hit1;
-            RaycastHit hit2;
             Ray ray1 = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
             Ray ray2 = Camera.main.ScreenPointToRay(Input.GetTouch(1).position);
 
@@ -183,6 +191,15 @@ public class TouchMng : MonoBehaviour
         }
     }
 
+    public void SetRemove(bool b)
+    {
+        RemoveBtn.SetActive(b);
+    }
+    public void SetRemovePosition(Vector3 pos)
+    {
+        RemoveBtn.transform.position = pos;
+    }
+
     /// <summary>
     /// 현재 선택된 기믹 오브젝트를 해제함
     /// </summary>
@@ -194,12 +211,14 @@ public class TouchMng : MonoBehaviour
             b_isRotation = false;
             SelectedObject.GetComponent<MoveScript>().DeselectObject();
             SelectedObject = null;
+            SetRemove(false);
         }
         
     }
 
     public void SelectObject(GameObject ob)
     {
+        print("TouchMng SelectObject Method");
         SelectedObject = ob;
         b_isSelect = true;
     }
@@ -211,9 +230,17 @@ public class TouchMng : MonoBehaviour
     {
         b_isObDrag = b;
     }
+    public bool GetisDrag()
+    {
+        return b_isObDrag;
+    }
     public void SetRotation(bool b)
     {
         b_isRotation = b;
+    }
+    public bool GetisRotation()
+    {
+        return b_isRotation;
     }
     private void DeselectOB()
     {
@@ -225,5 +252,16 @@ public class TouchMng : MonoBehaviour
     {
         prevPos = Vector2.zero;
         prevDistance = 0;
+    }
+
+    /// <summary>
+    /// 삭제버튼을 눌러 오브젝트 삭제와 삭제버튼 비활성화
+    /// </summary>
+    /// <param name="ob"></param>
+    /// <param name=""></param>
+    public void RemoveObject()
+    {
+        Destroy(SelectedObject);
+        SetRemove(false);
     }
 }

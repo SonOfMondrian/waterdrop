@@ -9,6 +9,7 @@ TagManager:
   - Gimmick
   - Rotation
   - Water
+  - Remove
   layers:
   - Default
   - TransparentFX

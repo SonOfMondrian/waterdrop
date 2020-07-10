@@ -3,10 +3,13 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - Drop
     - GameMng
+    - GimmickPaneltest
     - MoveScript
     - Pot
+    - Remove
     - ResolutionMethod
     - RotationScript
+    - SpriteText
     - TouchMng
     - Water1
     - pos
@@ -28,10 +31,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -76,13 +77,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11540}
     - Class: 114
-      Script: {instanceID: 12200}
+      Script: {instanceID: 12202}
     - Class: 114
-      Script: {instanceID: 12902}
+      Script: {instanceID: 12904}
     - Class: 114
-      Script: {instanceID: 13660}
+      Script: {instanceID: 13664}
     - Class: 114
-      Script: {instanceID: 14274}
+      Script: {instanceID: 14280}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -112,13 +113,23 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 28
       Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
     - Class: 49
       Script: {instanceID: 0}
+    - Class: 50
+      Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
-    - Class: 60
+    - Class: 58
+      Script: {instanceID: 0}
+    - Class: 61
+      Script: {instanceID: 0}
+    - Class: 62
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
@@ -133,6 +144,8 @@ ScriptsOnlyBuild:
     - Class: 102
       Script: {instanceID: 0}
     - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
       Script: {instanceID: 0}
     - Class: 109
       Script: {instanceID: 0}
@@ -149,33 +162,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11540}
     - Class: 114
-      Script: {instanceID: 12200}
+      Script: {instanceID: 11656}
     - Class: 114
-      Script: {instanceID: 12234}
+      Script: {instanceID: 12202}
     - Class: 114
-      Script: {instanceID: 12254}
+      Script: {instanceID: 12236}
     - Class: 114
-      Script: {instanceID: 12630}
+      Script: {instanceID: 12256}
     - Class: 114
-      Script: {instanceID: 12840}
+      Script: {instanceID: 12632}
     - Class: 114
-      Script: {instanceID: 12902}
+      Script: {instanceID: 12842}
     - Class: 114
-      Script: {instanceID: 13236}
+      Script: {instanceID: 12904}
     - Class: 114
-      Script: {instanceID: 13248}
+      Script: {instanceID: 13060}
     - Class: 114
-      Script: {instanceID: 13266}
+      Script: {instanceID: 13240}
     - Class: 114
-      Script: {instanceID: 13660}
+      Script: {instanceID: 13252}
     - Class: 114
-      Script: {instanceID: 13934}
+      Script: {instanceID: 13270}
     - Class: 114
-      Script: {instanceID: 14002}
+      Script: {instanceID: 13664}
     - Class: 114
-      Script: {instanceID: 14120}
+      Script: {instanceID: 13724}
     - Class: 114
-      Script: {instanceID: 14274}
+      Script: {instanceID: 13940}
+    - Class: 114
+      Script: {instanceID: 14008}
+    - Class: 114
+      Script: {instanceID: 14126}
+    - Class: 114
+      Script: {instanceID: 14280}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -231,7 +250,7 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 069b5c7ce8ab1f4c54d69c3f3bc77023
+      Hash: 39a4158c1a38a18b307452e5f37227c4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TouchMng
@@ -313,6 +332,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GridLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 07482f0c4d55d2064199b0ad23b7e1ed
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpriteText
   - hash:
       serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
@@ -519,6 +544,12 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Remove
+  - hash:
+      serializedVersion: 2
       Hash: 71b711096c6c32621c1d4c02310898b7
     assemblyName: Unity.2D.Animation.Runtime.dll
     namespaceName: UnityEngine.U2D.Animation
@@ -609,6 +640,12 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
+      Hash: bd1fbf1ad9d86e3f7cb65b7193e7cac5
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GimmickPaneltest
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -621,7 +658,7 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
-      Hash: 043fb068ea3a0f4797c73964e4aa229d
+      Hash: 29488bee4a444795e64ab9796523f131
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Drop
@@ -639,7 +676,7 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
-      Hash: 7f5db1f1bee33ca6200f927a934925c5
+      Hash: 2fb598217e3d69dd79ba99bee664f3d1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MoveScript
