@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 523119392308675731}
   - component: {fileID: 523119392308675728}
-  - component: {fileID: 2003265661207346871}
   - component: {fileID: 1520241345430166052}
+  - component: {fileID: 5232003262678305726}
+  - component: {fileID: 1143975538}
   m_Layer: 0
   m_Name: Amp
   m_TagString: Gimmick
@@ -54,19 +55,8 @@ MonoBehaviour:
   selectedobject: {fileID: 0}
   ren: {fileID: 0}
   sort: 0
---- !u!65 &2003265661207346871
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 523119392308675730}
-  m_Material: {fileID: 13400000, guid: 18059d586e5482549a87ce732409a91b, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.002996, y: 0.40215468, z: 0.7810831}
-  m_Center: {x: -0.0028633475, y: 0.00075662136, z: 0}
+  Showcase: {fileID: 0}
+  ani: {fileID: 0}
 --- !u!54 &1520241345430166052
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -77,12 +67,44 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &5232003262678305726
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523119392308675730}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1143975538
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523119392308675730}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7582346c2bb440247b825e2ba9337fbe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2297579789397916929
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +164,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 464298a84c245cd42867c9e94d74859b, type: 2}
+  - {fileID: 2100000, guid: aca2f578c06678d4ba757db4ad2255a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -172,7 +194,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2297579789397916929}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: a1e6647f3d6727c438fa446fffe27715, type: 2}
+  m_Material: {fileID: 6200000, guid: d5680663ba55a3e40a22d0a240a4ade7, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -300,4 +322,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3.28
+  m_Radius: 4

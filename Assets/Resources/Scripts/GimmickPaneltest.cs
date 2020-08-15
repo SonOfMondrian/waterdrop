@@ -10,12 +10,15 @@ public class GimmickPaneltest : MonoBehaviour
     GameObject Env;
     GameObject newgimmick;
     Text RemainPanelText;
+    Button button;
     /// <summary>
     /// 사용할 수 있는 남은 횟수
     /// </summary>
     [SerializeField]
     private int remaining;
     public GameObject prefab;
+
+    public Text remainingText;
 
     void Awake()
     {
@@ -24,6 +27,8 @@ public class GimmickPaneltest : MonoBehaviour
         Env = GameObject.Find("Environment");
         RemainPanelText = transform.Find("RemainPanel").Find("Text").GetComponent<Text>();
         RemainPanelText.text = remaining.ToString();
+        button = GetComponent<Button>();
+        remainingText = transform.Find("RemainPanel").Find("Text").GetComponent<Text>();
     }
     void Start()
     {
@@ -34,7 +39,56 @@ public class GimmickPaneltest : MonoBehaviour
     {
         print("Showcase Click");
 
+        if (GetRemaining() == 0)
+            return;
+
         GameObject newobject = Instantiate(prefab, Env.transform);
-        newobject.GetComponent<MoveScript>().SelectObject(newobject,true);
+        newobject.name = prefab.name.Split(' ')[0].ToString();
+        newobject.GetComponent<MoveScript>().SelectObject(newobject, true);
+
+        SetRemaining(-1);
+        isEmpty();
+    }
+
+    /// <summary>
+    /// 기믹이 삭제됨, 횟수 증가시킴
+    /// </summary>
+    public void Remove()
+    {
+        //횟수1증가
+        SetRemaining(1);
+        //버튼 활성화
+        isEmpty();
+    }
+    public int GetRemaining()
+    {
+        return remaining;
+    }
+    /// <summary>
+    /// 남은 횟수 갱신후 텍스트도 갱신
+    /// </summary>
+    /// <param name="i"></param>
+    public void SetRemaining(int i)
+    {
+        remaining += i;
+        remainingText.text = GetRemaining().ToString();
+
+    }
+    /// <summary>
+    /// 비어있으면 버튼 비활성화, 남아있으면 버튼 활성화
+    /// </summary>
+    /// <returns></returns>
+    public bool isEmpty()
+    {
+        if (remaining == 0)
+        {
+            button.interactable = false;
+            return true;
+        }
+        else
+        {
+            button.interactable = true;
+            return false;
+        }
     }
 }

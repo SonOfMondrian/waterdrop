@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{5F08F2C2-FF62-A5FD-4ECF-CA6EDEE6FE90}</ProjectGuid>
+    <ProjectGuid>{5F72F05C-29E0-6075-A3D4-A93CA4CB5A6B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -58,12 +58,18 @@
      <Compile Include="Assets\Resources\Scripts\Drop.cs" />
      <Compile Include="Assets\Resources\Scripts\GameMng.cs" />
      <Compile Include="Assets\Resources\Scripts\GimmickPaneltest.cs" />
+     <Compile Include="Assets\Resources\Scripts\Gravity.cs" />
+     <Compile Include="Assets\Resources\Scripts\GravityBall.cs" />
+     <Compile Include="Assets\Resources\Scripts\Gun.cs" />
+     <Compile Include="Assets\Resources\Scripts\Main\MainButton.cs" />
      <Compile Include="Assets\Resources\Scripts\MoveScript.cs" />
+     <Compile Include="Assets\Resources\Scripts\PauseScript.cs" />
      <Compile Include="Assets\Resources\Scripts\Pot.cs" />
      <Compile Include="Assets\Resources\Scripts\Remove.cs" />
      <Compile Include="Assets\Resources\Scripts\ResolutionMethod.cs" />
      <Compile Include="Assets\Resources\Scripts\RotationScript.cs" />
      <Compile Include="Assets\Resources\Scripts\SpriteText.cs" />
+     <Compile Include="Assets\Resources\Scripts\Stage\StageButton.cs" />
      <Compile Include="Assets\Resources\Scripts\TouchMng.cs" />
      <Compile Include="Assets\Resources\Scripts\Water1.cs" />
      <Compile Include="Assets\Resources\Scripts\pos.cs" />
@@ -86,85 +92,85 @@
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Animation.Runtime">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.PixelPerfect.Editor">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.SpriteShape.Editor">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Path.Editor">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Animation.Triangle.Runtime">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="PsdPlugin">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Mathematics">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Psdimporter.Editor">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.InternalAPIEngineBridge.001">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Sprite.Editor">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Common.Runtime">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Tilemap.Editor">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.SpriteShape.Runtime">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.PixelPerfect">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Animation.Editor">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Mathematics.Editor">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Common.Editor">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.InternalAPIEditorBridge.001">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>D:/Unity/WaterDrop/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/UnityProject/waterdrop/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

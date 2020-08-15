@@ -40,7 +40,8 @@ public class TouchMng : MonoBehaviour
 
     public bool b_isShowcasePress;
 
-
+    [SerializeField]
+    private bool b_isRemovePress;
     void Awake()
     {
         if (instance == null)
@@ -61,6 +62,10 @@ public class TouchMng : MonoBehaviour
         //GimmickPanel에 있는 오브젝트 누르는 중이면 드래그 안되기하기
         //if (b_isShowcasePress)
         //    return;
+
+        //일시정지일땐 터치 안먹게
+        if (GameMng.instance.GetisPause() == true)
+            return;
 
         if (Input.GetMouseButtonDown(0) && SystemInfo.deviceType == DeviceType.Desktop)
         {
@@ -109,6 +114,7 @@ public class TouchMng : MonoBehaviour
 
                         //선택된 오브젝트를 해제
                         DisableObject();
+                        SetisRemovePress(false);
                     }
 
                 }
@@ -132,6 +138,8 @@ public class TouchMng : MonoBehaviour
                     prevPos = Vector2.zero;
                     prevDistance = 0;
                     b_isCameraMoving = false;
+                    SetisRemovePress(false);
+
                 }
             }
         }
@@ -174,11 +182,12 @@ public class TouchMng : MonoBehaviour
                 float FOV = cam.fieldOfView;
                 FOV += delta * ZoomPower;
 
-                if (FOV >= 100)
-                    FOV = 100;
-                else if (FOV <= 16)
-                    FOV = 16;
+                if (FOV >= 80)
+                    FOV = 80;
+                else if (FOV <= 15)
+                    FOV = 15;
                 cam.fieldOfView = FOV;
+                
 
                 ZoomLastdis = ZoomNewposdis;
             }
@@ -194,6 +203,7 @@ public class TouchMng : MonoBehaviour
     public void SetRemove(bool b)
     {
         RemoveBtn.SetActive(b);
+        //RemoveBtn.transform.Find("Sprite").GetComponent<Remove>().ResizeBasedonFOV();
     }
     public void SetRemovePosition(Vector3 pos)
     {
@@ -221,6 +231,8 @@ public class TouchMng : MonoBehaviour
         print("TouchMng SelectObject Method");
         SelectedObject = ob;
         b_isSelect = true;
+        //선택될때 마다 FOV에 따라 삭제버튼을 리사이징한다.
+        
     }
     public GameObject GetSelectedObject()
     {
@@ -257,11 +269,19 @@ public class TouchMng : MonoBehaviour
     /// <summary>
     /// 삭제버튼을 눌러 오브젝트 삭제와 삭제버튼 비활성화
     /// </summary>
-    /// <param name="ob"></param>
-    /// <param name=""></param>
     public void RemoveObject()
     {
+        GetSelectedObject().GetComponent<MoveScript>().Showcase.GetComponent<GimmickPaneltest>().Remove();
         Destroy(SelectedObject);
         SetRemove(false);
+    }
+
+    public void SetisRemovePress(bool b)
+    {
+        b_isRemovePress = b;
+    }
+    public bool GetisRemovePress()
+    {
+        return b_isRemovePress;
     }
 }

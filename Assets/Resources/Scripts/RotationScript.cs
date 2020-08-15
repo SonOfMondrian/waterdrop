@@ -11,6 +11,7 @@ public class RotationScript : MonoBehaviour
     Vector3 dir;
     float angle;
     float lastAngle;
+    
     void Awake()
     {
         Gimmick = transform.parent.gameObject;

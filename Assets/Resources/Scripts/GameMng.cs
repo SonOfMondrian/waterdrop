@@ -7,6 +7,7 @@ public class GameMng : MonoBehaviour
 {
     public static GameMng instance;
 
+    bool b_isPause;
     void Awake()
     {
         if (instance == null)
@@ -30,5 +31,15 @@ public class GameMng : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene("ingame");
+    }
+
+    public void SetisPause(bool b)
+    {
+        b_isPause = b;
+
+    }
+    public bool GetisPause()
+    {
+        return b_isPause;
     }
 }

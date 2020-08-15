@@ -11,7 +11,7 @@ public class Pot : MonoBehaviour
     /// </summary>
     [SerializeField]
     private int GoalWater;
-
+    
     /// <summary>
     /// 현재 남은 물 갯수
     /// </summary>
@@ -60,7 +60,7 @@ public class Pot : MonoBehaviour
             }
         }
     }
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Water")
         {

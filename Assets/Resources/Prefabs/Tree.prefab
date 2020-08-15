@@ -217,7 +217,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3.28
+  m_Radius: 4
 --- !u!1 &1014250120880087900
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 1014250120880087902}
   - component: {fileID: 5219113134325927467}
   - component: {fileID: 8580663163193411231}
+  - component: {fileID: 1213949370}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Gimmick
@@ -272,6 +273,8 @@ MonoBehaviour:
   selectedobject: {fileID: 0}
   ren: {fileID: 0}
   sort: 0
+  Showcase: {fileID: 0}
+  ani: {fileID: 0}
 --- !u!135 &5219113134325927467
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -301,3 +304,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &1213949370
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014250120880087900}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7582346c2bb440247b825e2ba9337fbe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
