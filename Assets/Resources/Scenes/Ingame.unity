@@ -3243,6 +3243,11 @@ PrefabInstance:
       propertyPath: GoalWater
       value: 42
       objectReference: {fileID: 0}
+    - target: {fileID: 1590671312289355681, guid: 179b9cc16039003479d4adeaefc19b54,
+        type: 3}
+      propertyPath: StartIncreaseTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1590671312289355682, guid: 179b9cc16039003479d4adeaefc19b54,
         type: 3}
       propertyPath: m_Name
@@ -3385,6 +3390,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Point
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681581365778074860, guid: 5933b1acfd8450447bfae3f9aca44a57,
+        type: 3}
+      propertyPath: GenTime
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 2681581365778074861, guid: 5933b1acfd8450447bfae3f9aca44a57,
         type: 3}
