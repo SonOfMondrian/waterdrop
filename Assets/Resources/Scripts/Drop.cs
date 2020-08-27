@@ -24,6 +24,7 @@ public class Drop : MonoBehaviour
     {
         Water = Resources.Load<GameObject>("Prefabs/Water");
         Water2 = Resources.Load<GameObject>("Prefabs/Water2");
+        Point = transform.Find("Point").gameObject;
     }
 
     // Update is called once per frame
