@@ -639,6 +639,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GravityBall
       objectReference: {fileID: 0}
+    - target: {fileID: 3921381716078403650, guid: 2b2f625852ef4f94b9ed51dff9b7c1bb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b2f625852ef4f94b9ed51dff9b7c1bb, type: 3}
 --- !u!1 &269554711
@@ -3181,12 +3186,12 @@ PrefabInstance:
     - target: {fileID: 1590671312289355680, guid: 179b9cc16039003479d4adeaefc19b54,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.3
+      value: 4.25
       objectReference: {fileID: 0}
     - target: {fileID: 1590671312289355680, guid: 179b9cc16039003479d4adeaefc19b54,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.25
+      value: -2.52
       objectReference: {fileID: 0}
     - target: {fileID: 1590671312289355680, guid: 179b9cc16039003479d4adeaefc19b54,
         type: 3}
@@ -3232,6 +3237,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590671312289355681, guid: 179b9cc16039003479d4adeaefc19b54,
+        type: 3}
+      propertyPath: GoalWater
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 1590671312289355682, guid: 179b9cc16039003479d4adeaefc19b54,
         type: 3}
@@ -3370,6 +3380,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Drop
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681581365778074860, guid: 5933b1acfd8450447bfae3f9aca44a57,
+        type: 3}
+      propertyPath: Point
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2681581365778074861, guid: 5933b1acfd8450447bfae3f9aca44a57,
         type: 3}
