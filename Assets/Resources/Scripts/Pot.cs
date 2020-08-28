@@ -15,7 +15,25 @@ public class Pot : MonoBehaviour
     /// <summary>
     /// 현재 남은 물 갯수
     /// </summary>
-    public int CurWater;
+    [SerializeField]
+    private int curwater;
+
+    public int CurWater
+    {
+        get { return curwater; }
+        set
+        {
+            curwater += value;
+
+            
+            
+            text.text = CurWater.ToString();
+
+            if (CurWater == 0)
+                GameMng.instance.Clear();
+        }
+    }
+
 
     /// <summary>
     /// 남은 물 갯수가 다시 올라가기 시작할때까지 시간
@@ -55,7 +73,7 @@ public class Pot : MonoBehaviour
             //intervaltime초 간격으로 남은 물 갯수가 다시 올라감
             if (intervalCurtime > intervaltime)
             {
-                SetWater(1);
+                CurWater = 1;
                 intervalCurtime = 0;
             }
         }
@@ -65,24 +83,9 @@ public class Pot : MonoBehaviour
         if (other.gameObject.tag == "Water")
         {
             print("Pot에 들어감");
-            SetWater(-1);
+            CurWater = -1;
             curtime = 0;
-            intervalCurtime = 0;
-
             Destroy(other.gameObject);
         }
     }
-
-    /// <summary>
-    /// count만큼 남은 물갯수 줄이고
-    /// </summary>
-    void SetWater(int count)
-    {
-        CurWater += count;
-        text.text = CurWater.ToString();
-
-        if (CurWater == 0)
-            GameMng.instance.Clear();
-    }
-
 }

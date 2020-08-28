@@ -27,7 +27,6 @@ public class Drop : MonoBehaviour
         Point = transform.Find("Point").gameObject;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         intervaltime += Time.deltaTime;
@@ -37,6 +36,7 @@ public class Drop : MonoBehaviour
             intervaltime = 0;
         }
     }
+
     public void drop()
     {
         float x = Random.Range(-GenRange, GenRange);
