@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class TouchMng : MonoBehaviour
 {
@@ -55,6 +56,29 @@ public class TouchMng : MonoBehaviour
         cam = Camera.main;
     }
 
+    public Vector2 GettouchPos()
+    {
+        int touchcnt = Input.touchCount;
+
+        if (touchcnt == 1)
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+
+            int layerMask = 1 << LayerMask.NameToLayer("Panel");  // Panel 레이어만 충돌 체크함
+            print("layermask:" + layerMask);
+            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red, 0.01f);
+            if (Physics.Raycast(ray, out hit,layerMask))
+            {
+                print(hit.collider.name);
+                return hit.point;
+            }
+            return Vector2.zero;
+        }
+        else
+            return Vector2.zero;
+    }
+
     void Update()
     {
         nTouch = Input.touchCount;
@@ -93,7 +117,7 @@ public class TouchMng : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
 
 
-            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.yellow, 0.01f);
+            //Debug.DrawRay(ray.origin, ray.direction * 100f, Color.yellow, 0.01f);
             //뭔가 맞으면
             if (Physics.Raycast(ray, out hit))
             {

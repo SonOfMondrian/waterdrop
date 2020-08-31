@@ -83,13 +83,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 12206}
+      Script: {instanceID: 12210}
     - Class: 114
-      Script: {instanceID: 12912}
+      Script: {instanceID: 12918}
     - Class: 114
-      Script: {instanceID: 13676}
+      Script: {instanceID: 13682}
     - Class: 114
-      Script: {instanceID: 14292}
+      Script: {instanceID: 14298}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -119,9 +119,19 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 28
       Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 58
+      Script: {instanceID: 0}
     - Class: 61
+      Script: {instanceID: 0}
+    - Class: 62
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
@@ -156,26 +166,38 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11658}
     - Class: 114
-      Script: {instanceID: 12206}
+      Script: {instanceID: 11700}
     - Class: 114
-      Script: {instanceID: 12240}
+      Script: {instanceID: 12210}
     - Class: 114
-      Script: {instanceID: 12636}
+      Script: {instanceID: 12246}
     - Class: 114
-      Script: {instanceID: 12912}
+      Script: {instanceID: 12642}
     - Class: 114
-      Script: {instanceID: 13068}
+      Script: {instanceID: 12680}
     - Class: 114
-      Script: {instanceID: 13676}
+      Script: {instanceID: 12856}
     - Class: 114
-      Script: {instanceID: 13736}
+      Script: {instanceID: 12918}
     - Class: 114
-      Script: {instanceID: 14020}
+      Script: {instanceID: 13074}
     - Class: 114
-      Script: {instanceID: 14292}
+      Script: {instanceID: 13476}
+    - Class: 114
+      Script: {instanceID: 13682}
+    - Class: 114
+      Script: {instanceID: 13742}
+    - Class: 114
+      Script: {instanceID: 14026}
+    - Class: 114
+      Script: {instanceID: 14144}
+    - Class: 114
+      Script: {instanceID: 14298}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 135
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -249,37 +271,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11700}
     - Class: 114
-      Script: {instanceID: 12206}
+      Script: {instanceID: 12210}
     - Class: 114
-      Script: {instanceID: 12260}
+      Script: {instanceID: 12266}
     - Class: 114
-      Script: {instanceID: 12662}
+      Script: {instanceID: 12668}
     - Class: 114
-      Script: {instanceID: 12674}
+      Script: {instanceID: 12680}
     - Class: 114
-      Script: {instanceID: 12850}
+      Script: {instanceID: 12856}
     - Class: 114
-      Script: {instanceID: 12912}
+      Script: {instanceID: 12918}
     - Class: 114
-      Script: {instanceID: 13248}
+      Script: {instanceID: 13254}
     - Class: 114
-      Script: {instanceID: 13260}
+      Script: {instanceID: 13266}
     - Class: 114
-      Script: {instanceID: 13278}
+      Script: {instanceID: 13284}
     - Class: 114
-      Script: {instanceID: 13470}
+      Script: {instanceID: 13476}
     - Class: 114
-      Script: {instanceID: 13676}
+      Script: {instanceID: 13682}
     - Class: 114
-      Script: {instanceID: 13736}
+      Script: {instanceID: 13742}
     - Class: 114
-      Script: {instanceID: 13952}
+      Script: {instanceID: 13958}
     - Class: 114
-      Script: {instanceID: 14020}
+      Script: {instanceID: 14026}
     - Class: 114
-      Script: {instanceID: 14138}
+      Script: {instanceID: 14144}
     - Class: 114
-      Script: {instanceID: 14292}
+      Script: {instanceID: 14298}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -326,15 +348,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 12206}
+      Script: {instanceID: 12210}
     - Class: 114
-      Script: {instanceID: 12912}
+      Script: {instanceID: 12918}
     - Class: 114
-      Script: {instanceID: 13468}
+      Script: {instanceID: 13474}
     - Class: 114
-      Script: {instanceID: 13676}
+      Script: {instanceID: 13682}
     - Class: 114
-      Script: {instanceID: 14292}
+      Script: {instanceID: 14298}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -366,7 +388,7 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
-      Hash: 952824dd9993b555176e52d819e02c5b
+      Hash: c57268708573f463de1f75c0bb2cb07a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Pot
@@ -570,6 +592,12 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
+      Hash: d377fa5da10cb652e52f5d2a46d28e3f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DanielLochner.Assets.SimpleZoom
+    className: SimpleZoom
+  - hash:
+      serializedVersion: 2
       Hash: cc4274b586df3c02688bac01b88bd16c
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -592,6 +620,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.SpriteShape.Runtime.dll
     namespaceName: UnityEngine.U2D
     className: SpriteShape
+  - hash:
+      serializedVersion: 2
+      Hash: d4020bafcd3ccbb5601a6e6c8ac78be0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: DanielLochner.Assets.SimpleZoom
+    className: MultiTouchScrollRect
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -672,7 +706,7 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
-      Hash: 316d109b04f920e43136196d0b25d445
+      Hash: f3a03c76e5d2a5f0efd4816b2d413817
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RotationScript
@@ -940,4 +974,4 @@ ScriptsOnlyBuild:
   - Assets/Resources/Scenes/Stage.unity
   - Assets/Resources/Scenes/Ingame.unity
   - Assets/Resources/Scenes/Clear.unity
-  playerPath: C:/Users/moder/Desktop/waterdrop.apk
+  playerPath: C:/Users/PC2/Desktop/waterdrop.apk

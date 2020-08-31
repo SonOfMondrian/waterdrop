@@ -35,6 +35,10 @@ public class GimmickPaneltest : MonoBehaviour
 
 
     }
+
+    /// <summary>
+    /// 아래 오브젝트 목록중 기믹을 클릭하여 생성하는 함수
+    /// </summary>
     public void Click()
     {
         print("Showcase Click");

@@ -37,6 +37,11 @@ public class GameMng : MonoBehaviour
     {
         b_isPause = b;
 
+        if (b)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
+
     }
     public bool GetisPause()
     {

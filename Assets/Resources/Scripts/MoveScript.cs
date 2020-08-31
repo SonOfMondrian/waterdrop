@@ -130,8 +130,13 @@ public class MoveScript : MonoBehaviour
         //print(select.name);
         MoveScript Script = select.GetComponent<MoveScript>();
 
-        if(!isNoRotation)
+        if (!isNoRotation)
+        {
+            //회전 오브젝트(상위) 활성화
             Script.SelectedImage.SetActive(true);
+            //회전 오브젝트(자식) 활성화
+            Script.SelectedImage.transform.GetChild(0).gameObject.SetActive(true);
+        }
         Script.isSelect = true;
 
         if (!iscreated)
