@@ -16,6 +16,7 @@ public class GameMng : MonoBehaviour
     void Start()
     {
         //DontDestroyOnLoad(this);
+        SetisPause(false);
     }
 
     // Update is called once per frame
@@ -30,7 +31,9 @@ public class GameMng : MonoBehaviour
     }
     public void Restart()
     {
+        
         SceneManager.LoadScene("ingame");
+        
     }
 
     public void SetisPause(bool b)

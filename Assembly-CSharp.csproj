@@ -70,6 +70,7 @@
      <Compile Include="Assets\Resources\Scripts\RotationScript.cs" />
      <Compile Include="Assets\Resources\Scripts\SpriteText.cs" />
      <Compile Include="Assets\Resources\Scripts\Stage\StageButton.cs" />
+     <Compile Include="Assets\Resources\Scripts\Stage\StageManager.cs" />
      <Compile Include="Assets\Resources\Scripts\TouchMng.cs" />
      <Compile Include="Assets\Resources\Scripts\Water1.cs" />
      <Compile Include="Assets\Resources\Scripts\pos.cs" />

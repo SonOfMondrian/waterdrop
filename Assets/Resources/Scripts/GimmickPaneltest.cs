@@ -22,6 +22,7 @@ public class GimmickPaneltest : MonoBehaviour
 
     void Awake()
     {
+        //ex)ShowcaseTree ->Tree
         string trim = transform.name.Remove(0, 8);
         prefab = Resources.Load<GameObject>("Prefabs/" + trim);
         Env = GameObject.Find("Environment");
@@ -47,11 +48,14 @@ public class GimmickPaneltest : MonoBehaviour
             return;
 
         GameObject newobject = Instantiate(prefab, Env.transform);
+
+        //ex)Tree (Clone) -> Tree
         newobject.name = prefab.name.Split(' ')[0].ToString();
 
         //오브젝트 위치 설정(카메라 한가운데)
         LocateNewobject(newobject);
 
+        //오브젝트 선택해서 원(회전) 활성화
         newobject.GetComponent<MoveScript>().SelectObject(newobject, true);
 
         SetRemaining(-1);

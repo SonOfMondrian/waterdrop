@@ -95,6 +95,7 @@ public class TouchMng : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.yellow, 0.01f);
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider != null)
@@ -142,7 +143,7 @@ public class TouchMng : MonoBehaviour
                     }
 
                 }
-                if (Input.GetTouch(0).phase == TouchPhase.Moved && SelectedObject == null &&b_isCameraMoving)
+                if (Input.GetTouch(0).phase == TouchPhase.Moved && SelectedObject == null && b_isCameraMoving)
                 {
                     raytext.GetComponent<pos>().Print("드래그");
                     print("드래깅");
@@ -189,7 +190,9 @@ public class TouchMng : MonoBehaviour
                 //print("Zoom Began");
                 //ZoomLastdis = Vector3.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
             }
-            else if (Input.GetTouch(0).phase == TouchPhase.Moved && Input.GetTouch(1).phase == TouchPhase.Moved)
+            else if ((Input.GetTouch(0).phase == TouchPhase.Moved && Input.GetTouch(1).phase == TouchPhase.Stationary)||
+                (Input.GetTouch(0).phase == TouchPhase.Stationary && Input.GetTouch(1).phase == TouchPhase.Moved)||
+                (Input.GetTouch(0).phase == TouchPhase.Moved && Input.GetTouch(1).phase == TouchPhase.Moved))
             {
                 raytext.GetComponent<pos>().Print("줌아웃");
                 //print("Zoom Moved");
