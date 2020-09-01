@@ -119,19 +119,9 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 28
       Script: {instanceID: 0}
-    - Class: 33
-      Script: {instanceID: 0}
-    - Class: 43
-      Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 54
-      Script: {instanceID: 0}
-    - Class: 58
-      Script: {instanceID: 0}
     - Class: 61
-      Script: {instanceID: 0}
-    - Class: 62
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
@@ -166,23 +156,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11658}
     - Class: 114
-      Script: {instanceID: 11700}
-    - Class: 114
       Script: {instanceID: 12210}
     - Class: 114
       Script: {instanceID: 12246}
     - Class: 114
       Script: {instanceID: 12642}
     - Class: 114
-      Script: {instanceID: 12680}
-    - Class: 114
-      Script: {instanceID: 12856}
-    - Class: 114
       Script: {instanceID: 12918}
     - Class: 114
       Script: {instanceID: 13074}
-    - Class: 114
-      Script: {instanceID: 13476}
     - Class: 114
       Script: {instanceID: 13682}
     - Class: 114
@@ -190,14 +172,10 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14026}
     - Class: 114
-      Script: {instanceID: 14144}
-    - Class: 114
       Script: {instanceID: 14298}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
-      Script: {instanceID: 0}
-    - Class: 135
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}

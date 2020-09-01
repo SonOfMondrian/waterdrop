@@ -48,10 +48,21 @@ public class GimmickPaneltest : MonoBehaviour
 
         GameObject newobject = Instantiate(prefab, Env.transform);
         newobject.name = prefab.name.Split(' ')[0].ToString();
+
+        //오브젝트 위치 설정(카메라 한가운데)
+        LocateNewobject(newobject);
+
         newobject.GetComponent<MoveScript>().SelectObject(newobject, true);
 
         SetRemaining(-1);
         isEmpty();
+    }
+
+    public void LocateNewobject(GameObject ob)
+    {
+        Vector2 center = Camera.main.transform.position;
+        print("카메라 Center: "+center);
+        ob.transform.position = center;
     }
 
     /// <summary>

@@ -32,13 +32,20 @@ public class RotationScript : MonoBehaviour
     }
     void OnMouseDown()
     {
-        //print("Rotation Down");
         TouchMng.instance.SetRotation(true);
         gimmickRot = Gimmick.transform.eulerAngles.z;
         print("Rotation Down");
         //print("gimmickrot: " + gimmickRot);
 
         dir = Input.mousePosition - Camera.main.WorldToScreenPoint(Gimmick.transform.position);
+
+        ////회전 오브젝트 회전했을시 크기 계산 OnMouseDown(),OnMouseDrag()둘다 넣어야할듯
+        //// print(TouchMng.instance.GettouchPos());
+        //float distanse = Vector2.Distance(Gimmick.transform.position, TouchMng.instance.GettouchPos());
+        //distanse = distanse * RotScale;
+        //transform.GetChild(0).localScale = new Vector2(distanse, distanse);
+
+
 
         lastAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
     }
@@ -68,7 +75,7 @@ public class RotationScript : MonoBehaviour
         distanse = distanse *RotScale;
         transform.GetChild(0).localScale = new Vector2(distanse, distanse);
 
-        print("기믹과 손가락의 거리: "+distanse);
+       // print("기믹과 손가락의 거리: "+distanse);
 
         lastAngle = newAngle;
 

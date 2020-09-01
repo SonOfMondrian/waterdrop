@@ -35,8 +35,15 @@ public class MoveScript : MonoBehaviour
     {
         if (!isNoRotation)
         {
-            SelectedImage = transform.Find("Rotation").gameObject;
-            ani = GetComponent<Animator>();
+            try
+            {
+                SelectedImage = transform.Find("Rotation").gameObject;
+                ani = GetComponent<Animator>();
+            }
+            catch
+            {
+                Debug.LogError("회전 오브젝트를 찾지 못했습니다 Name:" + transform.name);
+            }
         }
         //RemoveBtn = transform.Find("Remove").gameObject;
         //RemoveBtn.SetActive(false);
@@ -78,7 +85,7 @@ public class MoveScript : MonoBehaviour
                     if (touch.phase == TouchPhase.Began)
                     {
                         DeselectObject();
-
+                        print("Gimmick Began");
                         TouchMng.instance.SelectObject(hit.collider.gameObject);
                         SelectObject(hit.collider.gameObject, false);
                         //SelectAnimation(true);
@@ -96,12 +103,12 @@ public class MoveScript : MonoBehaviour
                 {
                     if (touch.phase == TouchPhase.Began)
                     {
-                        print("b_isRemovePress True");
+                        print("Remove Began");
                         TouchMng.instance.SetisRemovePress(true);
                     }
-                    else if (touch.phase == TouchPhase.Ended && TouchMng.instance.GetisRemovePress())
+                    else if (touch.phase == TouchPhase.Ended)    //backup: && TouchMng.instance.GetisRemovePress()
                     {
-                        print("Remove");
+                        print("Remove ended");
                         //IncreaseRemaining();
                         TouchMng.instance.RemoveObject();
                         TouchMng.instance.SetisRemovePress(false);
@@ -110,7 +117,7 @@ public class MoveScript : MonoBehaviour
             }
             if (touch.phase == TouchPhase.Moved && isPressed && isSelect)
             {
-                //print("gimmick Moved");
+                print("gimmick Moved");
                 TouchMng.instance.GetSelectedObject().transform.position = new Vector3(hit.point.x - deltaX, hit.point.y - deltaY, transform.position.z);
                 TouchMng.instance.RemoveBtn.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             }
@@ -118,7 +125,7 @@ public class MoveScript : MonoBehaviour
             {
                 isPressed = false;
                 TouchMng.instance.SetDrag(false);
-                TouchMng.instance.SetisRemovePress(false);
+                //TouchMng.instance.SetisRemovePress(false);
             }
         }
     }
@@ -129,13 +136,13 @@ public class MoveScript : MonoBehaviour
     {
         //print(select.name);
         MoveScript Script = select.GetComponent<MoveScript>();
-
         if (!isNoRotation)
         {
             //회전 오브젝트(상위) 활성화
             Script.SelectedImage.SetActive(true);
             //회전 오브젝트(자식) 활성화
             Script.SelectedImage.transform.GetChild(0).gameObject.SetActive(true);
+
         }
         Script.isSelect = true;
 
@@ -148,7 +155,14 @@ public class MoveScript : MonoBehaviour
         TouchMng.instance.SelectObject(select);
 
         if (!isNoRotation)
+        {
+            //회전 오브젝트(상위) 활성화
+            Script.SelectedImage.SetActive(true);
+            //회전 오브젝트(자식) 활성화
+            Script.SelectedImage.transform.GetChild(0).gameObject.SetActive(true);
             SelectAnimation(true);
+
+        }
     }
 
     public void DeselectObject()

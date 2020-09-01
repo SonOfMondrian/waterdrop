@@ -66,11 +66,11 @@ public class TouchMng : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
 
             int layerMask = 1 << LayerMask.NameToLayer("Panel");  // Panel 레이어만 충돌 체크함
-            print("layermask:" + layerMask);
+            //print("layermask:" + layerMask);
             Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red, 0.01f);
             if (Physics.Raycast(ray, out hit,layerMask))
             {
-                print(hit.collider.name);
+                print("GettouchPos(): "+hit.collider.name);
                 return hit.point;
             }
             return Vector2.zero;
@@ -295,6 +295,7 @@ public class TouchMng : MonoBehaviour
     /// </summary>
     public void RemoveObject()
     {
+        print("Destroy");
         GetSelectedObject().GetComponent<MoveScript>().Showcase.GetComponent<GimmickPaneltest>().Remove();
         Destroy(SelectedObject);
         SetRemove(false);
