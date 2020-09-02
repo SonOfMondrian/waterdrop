@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class GimmickPaneltest : MonoBehaviour
 {
-    GameObject Env;
+    public GameObject Env;
     GameObject newgimmick;
     Text RemainPanelText;
     Button button;
@@ -24,8 +24,9 @@ public class GimmickPaneltest : MonoBehaviour
     {
         //ex)ShowcaseTree ->Tree
         string trim = transform.name.Remove(0, 8);
-        prefab = Resources.Load<GameObject>("Prefabs/" + trim);
-        Env = GameObject.Find("Environment");
+        //print(trim);
+        prefab = Resources.Load<GameObject>("Prefabs/Gimmicks/" + trim);
+        
         RemainPanelText = transform.Find("RemainPanel").Find("Text").GetComponent<Text>();
         RemainPanelText.text = remaining.ToString();
         button = GetComponent<Button>();
@@ -33,7 +34,7 @@ public class GimmickPaneltest : MonoBehaviour
     }
     void Start()
     {
-
+        Env = GameObject.Find("Environment");
 
     }
 

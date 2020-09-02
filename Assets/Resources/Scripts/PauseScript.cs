@@ -67,11 +67,13 @@ public class PauseScript : MonoBehaviour
     }
     void Restart()
     {
+        
         SceneManager.LoadScene("ingame");
 
     }
     void Stage()
     {
+        StageManager.instance.DestroyManager();
         SceneManager.LoadScene("Stage");
 
     }

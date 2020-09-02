@@ -68,7 +68,9 @@
      <Compile Include="Assets\Resources\Scripts\Remove.cs" />
      <Compile Include="Assets\Resources\Scripts\ResolutionMethod.cs" />
      <Compile Include="Assets\Resources\Scripts\RotationScript.cs" />
+     <Compile Include="Assets\Resources\Scripts\ShowcaseGenerator.cs" />
      <Compile Include="Assets\Resources\Scripts\SpriteText.cs" />
+     <Compile Include="Assets\Resources\Scripts\Stage\SetupGimmicks.cs" />
      <Compile Include="Assets\Resources\Scripts\Stage\StageButton.cs" />
      <Compile Include="Assets\Resources\Scripts\Stage\StageManager.cs" />
      <Compile Include="Assets\Resources\Scripts\TouchMng.cs" />

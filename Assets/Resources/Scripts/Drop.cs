@@ -18,12 +18,13 @@ public class Drop : MonoBehaviour
     /// +- 생성되는 범위 값
     /// </summary>
     [SerializeField]
+    [Range(0,1)]
     private float GenRange;
 
     void Start()
     {
-        Water = Resources.Load<GameObject>("Prefabs/Water");
-        Water2 = Resources.Load<GameObject>("Prefabs/Water2");
+        Water = Resources.Load<GameObject>("Prefabs/etcs/Water");
+        Water2 = Resources.Load<GameObject>("Prefabs/etcs/Water2");
         Point = transform.Find("Point").gameObject;
     }
 
@@ -42,6 +43,7 @@ public class Drop : MonoBehaviour
         float x = Random.Range(-GenRange, GenRange);
         //Vector3 genpos = new Vector3(Point.transform.position.x + x, Point.transform.position.y, Point.transform.position.z);
         GameObject newWater= Instantiate(Water2,Point.transform);
-        newWater.GetComponent<Rigidbody2D>().AddForce(Vector2.right * x);
+        newWater.transform.position = new Vector2(newWater.transform.position.x + x, newWater.transform.position.y);
+        //newWater.GetComponent<Rigidbody2D>().AddForce(Vector2.right * x);
     }
 }

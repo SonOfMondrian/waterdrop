@@ -18,6 +18,8 @@ public class StageButton : MonoBehaviour
     }
     public void ClickStageNumButton()
     {
+        StageManager.instance.GetStage(transform.name);
+
         SceneManager.LoadScene("ingame");
     }
 }
