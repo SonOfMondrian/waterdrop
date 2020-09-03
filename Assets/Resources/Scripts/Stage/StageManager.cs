@@ -10,16 +10,67 @@ public class StageManager : MonoBehaviour
     public GameObject Stage;
     public bool EnterIngame;
 
+    public bool ismoving;
+
+    //public bool IsMoving
+    //{
+    //    get { return ismoving; }
+    //    set { ismoving = value; }
+    //}
+
+
+    /// <summary>
+    /// 사용X
+    /// </summary>
+    [SerializeField]
+    private int currentworld;
+
+    ///// <summary>
+    ///// 현재 선택한 월드
+    ///// </summary>
+    //public int CurrentWorld
+    //{
+    //    get
+    //    {
+    //        return currentworld;
+    //    }
+    //    set
+    //    {
+    //        currentworld += value;
+            
+    //        print("현재 월드:" + CurrentWorld);
+            
+    //        //현재 카메라 위치에서 CurrentWorld로 설정한 월드 위치까지 SmoothStep시키기
+
+    //    }
+    //}
+
+
     void Awake()
     {
         if (instance == null)
             instance = this;
         DontDestroyOnLoad(this);
+        ismoving = false;
+        print("StageManager Awake");
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        //CurrentWorld = 1;
     }
     void Start()
     {
         
+    }
+
+    void FixedUpdate()
+    {
+        if (ismoving)
+        {
+            print("카메라 이동중");
+            Camera.main.transform.position = new Vector2(Mathf.SmoothStep(Camera.main.transform.position.x, GameObject.Find("World"+ currentworld).transform.position.x, 0.5f),
+                                                        Mathf.SmoothStep(Camera.main.transform.position.y, GameObject.Find("World" + currentworld).transform.position.y, 0.5f));
+            //if (Vector2.Distance(Camera.main.transform.position, GameObject.Find("World" + CurrentWorld).transform.position) <= 0.1f)
+               // ismoving = false;
+        }
     }
     /// <summary>
     /// 스테이지 프리펩을 가져온다
@@ -55,5 +106,28 @@ public class StageManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
         Destroy(this.gameObject);
+    }
+
+    public void ClickArrow(string s)
+    {
+        print(s);
+        if(s=="l")
+        {
+            print("왼쪽 버튼");
+            if (currentworld <= 0)
+                currentworld = 1;
+            else
+                currentworld--;
+
+            ismoving = true;
+        }
+        else if(s=="r")
+        {
+            print("오른쪽 버튼");
+            currentworld++;
+
+            ismoving = true;
+        }
+        
     }
 }

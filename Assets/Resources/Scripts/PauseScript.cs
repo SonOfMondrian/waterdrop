@@ -73,7 +73,7 @@ public class PauseScript : MonoBehaviour
     }
     void Stage()
     {
-        StageManager.instance.DestroyManager();
+        //StageManager.instance.DestroyManager();
         SceneManager.LoadScene("Stage");
 
     }
