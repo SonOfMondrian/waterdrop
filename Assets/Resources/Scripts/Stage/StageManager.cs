@@ -63,13 +63,9 @@ public class StageManager : MonoBehaviour
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         //CurrentWorld = 1;
     }
-    void Update()
-    {
-        print("Update");
-    }
     void FixedUpdate()
     {
-        print("FixedUpdate");
+        //print("FixedUpdate");
         //왼쪽 오른쪽 버튼을 눌러 월드가 이동하기 위한 코루틴 함수
         if (IsMoving)
         {
