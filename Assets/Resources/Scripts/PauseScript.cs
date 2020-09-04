@@ -73,7 +73,7 @@ public class PauseScript : MonoBehaviour
     }
     void Stage()
     {
-        //StageManager.instance.DestroyManager();
+        GameMng.instance.SetisPause(false);
         SceneManager.LoadScene("Stage");
 
     }

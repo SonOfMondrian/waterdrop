@@ -5,21 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class StageButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void ClickStageNumButton()
     {
         StageManager.instance.GetStage(transform.name);
-
+        StageManager.instance.IsMoving = false;
+        //StopCoroutine(StageManager.instance.CameraMoving());
         SceneManager.LoadScene("ingame");
+    }
+    /// <summary>
+    /// 왼쪽, 오른쪽 버튼을 클릭시 호출
+    /// </summary>
+    public void ClickArrowButton(int v)
+    {
+        StageManager.instance.ClickArrow(v);
     }
 }

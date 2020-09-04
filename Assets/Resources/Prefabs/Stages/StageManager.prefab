@@ -45,5 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stage: {fileID: 0}
   EnterIngame: 0
+  maxWorld: 3
   ismoving: 0
   currentworld: 1
