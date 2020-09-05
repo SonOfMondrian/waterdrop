@@ -116,6 +116,10 @@ public class StageManager : MonoBehaviour
         string[] stagePath = s.Split('-');
         string path = "Prefabs/Stages/World" + stagePath[0] + "/" + stagePath[1];
         Stage = Resources.Load<GameObject>(path);
+        if(Stage==null)
+        {
+            Debug.LogError("선택한 스테이지가 존재하지 않습니다.");
+        }
     }
     /// <summary>
     /// 씬 로드 이벤트
