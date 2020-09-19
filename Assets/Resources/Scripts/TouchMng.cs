@@ -78,6 +78,10 @@ public class TouchMng : MonoBehaviour
         else
             return Vector2.zero;
     }
+    void FixedUpdate()
+    {
+
+    }
 
     void Update()
     {
