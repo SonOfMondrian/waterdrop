@@ -6,6 +6,6 @@ PhysicsMaterial2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Amp2d
-  friction: 10
-  bounciness: 0.9
+  m_Name: Water
+  friction: 5542.7
+  bounciness: 0

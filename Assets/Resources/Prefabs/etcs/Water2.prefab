@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a8123ab21347d40838c737f805a50d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mag: 0
+  isSleep: 0
 --- !u!50 &1972296570
 Rigidbody2D:
   serializedVersion: 4
@@ -59,12 +61,12 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.3
   m_AngularDrag: 0
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f07a86db44cfa5d459b25b0ec2f0d340, type: 2}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 2
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &1972296571

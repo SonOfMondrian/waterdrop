@@ -173,12 +173,69 @@ public class TouchMng : MonoBehaviour
             }
         }
         //2개 동시 터치일때
-        else if (nTouch == 2)
+        if (nTouch == 2)
         {
+            Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+
+
+            //Debug.DrawRay(ray.origin, ray.direction * 100f, Color.yellow, 0.01f);
+            //뭔가 맞으면
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider != null)
+                    raytext.GetComponent<pos>().Print(hit.collider.name + " / Phone 충돌");
+
+                if (b_isRotation)
+                    return;
+
+                if (hit.collider.tag == "Panel")
+                {
+
+                    if (Input.GetTouch(0).phase == TouchPhase.Began)
+                    {
+                        //print("Bagan");
+                        b_isCameraMoving = true;
+
+
+                        //선택된 오브젝트를 해제
+                        DisableObject();
+                        SetisRemovePress(false);
+                    }
+
+                }
+                if (Input.GetTouch(0).phase == TouchPhase.Moved && SelectedObject == null )
+                {
+                    raytext.GetComponent<pos>().Print("드래그");
+                    print("드래깅");
+                    if (prevPos == Vector2.zero)
+                    {
+                        prevPos = Input.GetTouch(0).position;
+                        return;
+                    }
+                    Vector2 dir = (Input.GetTouch(0).position - prevPos);
+                    Vector3 vec = new Vector3(dir.x, dir.y, 0);
+                    cam.transform.position -= cam.fieldOfView * 0.01f * vec * MovePower * Time.deltaTime;
+                    prevPos = Input.GetTouch(0).position;
+                }
+                else if (Input.GetTouch(0).phase == TouchPhase.Ended)
+                {
+                    //print("Ended");
+                    prevPos = Vector2.zero;
+                    prevDistance = 0;
+                    b_isCameraMoving = false;
+                    SetisRemovePress(false);
+
+                }
+            }
+            //====================================
+
             b_isCameraMoving = false;
             DisableObject();
 
-            Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            //Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
             Ray ray1 = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
             Ray ray2 = Camera.main.ScreenPointToRay(Input.GetTouch(1).position);

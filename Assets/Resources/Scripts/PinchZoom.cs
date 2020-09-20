@@ -6,6 +6,7 @@ public class PinchZoom : MonoBehaviour
     public float minZoom = 1f;
     public float maxZoom = 10f;
     public float sensitivity = 2f;
+    public float cammovesensitivity;
     Vector3 cameraPosition;
     Vector3 mousePositionOnScreen;
     Vector3 mousePositionOnScreen1;
@@ -30,9 +31,9 @@ public class PinchZoom : MonoBehaviour
 
     void FixedUpdate()
     {
-        mouseOnWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
+        mouseOnWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (Input.GetAxis("Mouse ScrollWheel") != 0)
@@ -40,26 +41,20 @@ public class PinchZoom : MonoBehaviour
             mousePositionOnScreen = mousePositionOnScreen1;
             mousePositionOnScreen1 = Input.mousePosition;
 
-            //FOV 연산
-            float fov = Camera.main.fieldOfView;
-            fov -= Input.GetAxis("Mouse ScrollWheel") * sensitivity;
-            //print(Input.GetAxis("Mouse ScrollWheel"));
-            fov = Mathf.Clamp(fov, minZoom, maxZoom);
-            //print(fov);
-            Camera.main.fieldOfView = fov;
+            Ray ray1 = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Debug.DrawRay(ray1.origin, ray1.direction * 10000f, Color.yellow, 1f);
 
-            //마우스 초점 잡기 연산
-            //마우스 위치
-            Vector3 mouseOnWorld1 = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
-            print(mouseOnWorld1);
-            //전 마우스 위치와 현재 마우스 위치의 차이값
-            posDiff = mouseOnWorld - mouseOnWorld1;
-            print(posDiff);
-            //현재 카메라 위치
+            float fov = Camera.main.orthographicSize;
+            fov += Input.GetAxis("Mouse ScrollWheel") * sensitivity;
+            fov = Mathf.Clamp(fov, minZoom, maxZoom);
+            Camera.main.orthographicSize = fov;
+            Vector3 mouseOnWorld1 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 posDiff = mouseOnWorld - mouseOnWorld1;
             Vector3 camPos = Camera.main.transform.position;
-            Camera.main.transform.position = new Vector3(camPos.x - posDiff.x * sensitivity, camPos.y - posDiff.y * sensitivity, camPos.z);
+            Camera.main.transform.position = new Vector3(camPos.x + posDiff.x, camPos.y + posDiff.y, camPos.z);
+
         }
-        //print(Input.touchCount);
+
         if (Input.touchCount == 2)
         {
             Ray ray1 = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
@@ -82,7 +77,6 @@ public class PinchZoom : MonoBehaviour
             {
                 lastdis = distance;
                 return;
-
             }
             newdis = distance;
             float delta = lastdis - newdis;
@@ -93,6 +87,15 @@ public class PinchZoom : MonoBehaviour
             fov = Mathf.Clamp(fov, minZoom, maxZoom);
             Camera.main.fieldOfView = fov;
             lastdis = newdis;
+
+
+
+
+            if (Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetTouch(1).phase == TouchPhase.Ended)
+            {
+                lastdis = 0;
+            }
+
         }
 
 
