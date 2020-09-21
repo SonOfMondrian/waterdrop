@@ -5,25 +5,47 @@ using UnityEngine;
 public class Water1 : MonoBehaviour
 {
     public float mag;
+    public Vector2 velocity;
     public bool isSleep;
+    float sleepTimer;
+    public float destroytime;
+    public float bouncepower;
+    Rigidbody2D rig;
     void Start()
     {
+        rig = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (isSleep)
-            return;
 
-        if(transform.position.y <=-10)
+        if (transform.position.y <= -10)
             Destroy(this.gameObject);
 
-        mag = GetComponent<Rigidbody2D>().velocity.magnitude;
-        if(mag <=0.0001f)
+        mag = rig.velocity.magnitude;
+        velocity = rig.velocity;
+
+        if (mag <= 0.05f)
         {
-            isSleep = true;
-            Destroy(this.gameObject,1f);
+            sleepTimer += Time.deltaTime;
+            if (sleepTimer >= destroytime)
+                Destroy(this.gameObject);
+        }
+        else
+            sleepTimer = 0;
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if(coll.gameObject.tag=="Amp")
+        {
+
+            //print("충돌한 물체 법선 : "+coll.contacts[0].normal);
+            print(velocity.normalized);
+            Vector2 reflectVector = Vector2.Reflect(velocity.normalized, coll.contacts[0].normal);
+            //print("반사 벡터: " + reflectVector);
+            rig.velocity = reflectVector * bouncepower*mag;
+            //GetComponent<Rigidbody2D>().AddForce(reflectVector * mag  *bouncepower);
         }
     }
 }

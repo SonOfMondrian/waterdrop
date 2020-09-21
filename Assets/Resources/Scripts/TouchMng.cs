@@ -187,7 +187,6 @@ public class TouchMng : MonoBehaviour
             {
                 if (hit.collider != null)
                     raytext.GetComponent<pos>().Print(hit.collider.name + " / Phone 충돌");
-
                 if (b_isRotation)
                     return;
 

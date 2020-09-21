@@ -10,6 +10,7 @@ TagManager:
   - Rotation
   - Water
   - Remove
+  - Amp
   layers:
   - Default
   - TransparentFX
