@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Water1 : MonoBehaviour
 {
-    public float mag;
-    public Vector2 velocity;
-    public bool isSleep;
-    float sleepTimer;
-    public float destroytime;
-    public float bouncepower;
+    private float mag;
+    private Vector2 velocity;
+    private float sleepTimer;
+    [SerializeField]
+    private float destroytime;
+    [SerializeField]
+    private float AmpBouncePower;
+    [SerializeField]
+    private float MetalBouncePower;
+    [SerializeField]
+    private float TreeBouncePower;
     Rigidbody2D rig;
     void Start()
     {
@@ -39,13 +44,14 @@ public class Water1 : MonoBehaviour
     {
         if(coll.gameObject.tag=="Amp")
         {
-
-            //print("충돌한 물체 법선 : "+coll.contacts[0].normal);
             print(velocity.normalized);
             Vector2 reflectVector = Vector2.Reflect(velocity.normalized, coll.contacts[0].normal);
-            //print("반사 벡터: " + reflectVector);
-            rig.velocity = reflectVector * bouncepower*mag;
-            //GetComponent<Rigidbody2D>().AddForce(reflectVector * mag  *bouncepower);
+            rig.velocity = reflectVector * AmpBouncePower*mag;
+        }
+        else if(coll.gameObject.tag == "Metal")
+        {
+            Vector2 reflectVector = Vector2.Reflect(velocity.normalized, coll.contacts[0].normal);
+            rig.velocity = reflectVector * MetalBouncePower * mag;
         }
     }
 }

@@ -35,6 +35,10 @@ public class GameMng : MonoBehaviour
         SceneManager.LoadScene("ingame");
         
     }
+    public void Stage()
+    {
+        SceneManager.LoadScene("Stage");
+    }
 
     public void SetisPause(bool b)
     {

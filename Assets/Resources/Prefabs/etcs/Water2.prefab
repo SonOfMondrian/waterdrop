@@ -47,11 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a8123ab21347d40838c737f805a50d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mag: 0
-  velocity: {x: 0, y: 0}
-  isSleep: 0
   destroytime: 1
-  bouncepower: 1
+  AmpBouncePower: 1
+  MetalBouncePower: 0.5
+  TreeBouncePower: 0.1
 --- !u!50 &1972296570
 Rigidbody2D:
   serializedVersion: 4
