@@ -4,26 +4,43 @@ using UnityEngine;
 
 public class ShowcaseGenerator : MonoBehaviour
 {
+    List<GameObject> GimmickPrefs;
     public GameObject TreeShowcasePref;
     public GameObject MetalShowcasePref;
     public GameObject AmpShowcasePref;
     public GameObject GunShowcasePref;
+    public GameObject GravityShowcasePref;
 
     void Awake()
     {
-        TreeShowcasePref = Resources.Load<GameObject>("Prefabs/UIs/ShowcaseTree");
-        MetalShowcasePref = Resources.Load<GameObject>("Prefabs/UIs/ShowcaseMetal");
-        AmpShowcasePref = Resources.Load<GameObject>("Prefabs/UIs/ShowcaseAmp");
-        GunShowcasePref = Resources.Load<GameObject>("Prefabs/UIs/ShowcaseGun");
-    }
-    void Start()
-    {
-        
+        GimmickPrefs = new List<GameObject>();
+
+        //기믹 만들때 마다 넣어주자!
+        GimmickPrefs.Add(Resources.Load<GameObject>("Prefabs/UIs/ShowcaseTree"));
+        GimmickPrefs.Add(Resources.Load<GameObject>("Prefabs/UIs/ShowcaseMetal"));
+        GimmickPrefs.Add(Resources.Load<GameObject>("Prefabs/UIs/ShowcaseAmp"));
+        GimmickPrefs.Add(Resources.Load<GameObject>("Prefabs/UIs/ShowcaseGun"));
+        GimmickPrefs.Add(Resources.Load<GameObject>("Prefabs/UIs/ShowcaseGravity"));
+
+
+        //TreeShowcasePref = Resources.Load<GameObject>("Prefabs/UIs/ShowcaseTree");
+        //MetalShowcasePref = Resources.Load<GameObject>("Prefabs/UIs/ShowcaseMetal");
+        //AmpShowcasePref = Resources.Load<GameObject>("Prefabs/UIs/ShowcaseAmp");
+        //GunShowcasePref = Resources.Load<GameObject>("Prefabs/UIs/ShowcaseGun");
+        //GravityShowcasePref = Resources.Load<GameObject>("Prefabs/UIs/ShowcaseGravity");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetupGimmicks(int[] gimmicks)
     {
-        
+
+        for(int i=0;i<gimmicks.Length;i++)
+        {
+            if(gimmicks[i]>0)
+            {
+                print("SetupGimmicks Method Call");
+                GameObject newgimmick = Instantiate(GimmickPrefs[i], transform);
+                newgimmick.GetComponent<GimmickPanel>().SetRemaining(gimmicks[i]);
+            }
+        }
     }
 }

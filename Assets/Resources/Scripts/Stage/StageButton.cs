@@ -7,10 +7,11 @@ public class StageButton : MonoBehaviour
 {
     public void ClickStageNumButton()
     {
-        StageManager.instance.GetStage(transform.name);
-        StageManager.instance.IsMoving = false;
+        GameObject stage = StageManager.instance.ClickStage(transform.name);
         //StopCoroutine(StageManager.instance.CameraMoving());
-        SceneManager.LoadScene("ingame");
+
+        if(stage!=null)
+            SceneManager.LoadScene("ingame");
     }
     /// <summary>
     /// 왼쪽, 오른쪽 버튼을 클릭시 호출

@@ -359,7 +359,7 @@ public class TouchMng : MonoBehaviour
     public void RemoveObject()
     {
         print("Destroy");
-        GetSelectedObject().GetComponent<MoveScript>().Showcase.GetComponent<GimmickPaneltest>().Remove();
+        GetSelectedObject().GetComponent<MoveScript>().Showcase.GetComponent<GimmickPanel>().Remove();
         Destroy(SelectedObject);
         SetRemove(false);
     }

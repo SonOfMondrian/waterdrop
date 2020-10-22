@@ -8,25 +8,19 @@ using UnityEngine;
 /// </summary>
 public class SetupGimmicks : MonoBehaviour
 {
+    GameObject Showcase;
     [SerializeField]
-    private int Tree;
-    [SerializeField]
-    private int Metal;
-    [SerializeField]
-    private int Amp;
-    [SerializeField]
-    private int Gun;
+    int[] Gimmicks = new int[5]; //0:Tree 1:Metal 2:Amp 3:Gun 4:Gravity
 
 
     void Awake()
     {
-
+        Showcase = GameObject.Find("ShowCase");
         transform.name = "Environment";
     }
 
     void Start()
     {
-
+        Showcase.GetComponent<ShowcaseGenerator>().SetupGimmicks(Gimmicks);
     }
-
 }

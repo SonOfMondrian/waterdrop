@@ -22,6 +22,12 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     private int currentworld;
 
+
+    [SerializeField] private string world;
+    [SerializeField] private string stage;
+
+    Dictionary<string, object> GimmicksAmount;
+
     /// <summary>
     /// 현재 선택한 월드
     /// </summary>
@@ -114,13 +120,31 @@ public class StageManager : MonoBehaviour
         print("스테이지명: " + s);
 
         string[] stagePath = s.Split('-');
-        string path = "Prefabs/Stages/World" + stagePath[0] + "/" + stagePath[1];
+        world = stagePath[0];
+        stage = stagePath[1];
+        string path = "Prefabs/Stages/World" + world + "/" + stage;
         Stage = Resources.Load<GameObject>(path);
         if(Stage==null)
         {
             Debug.LogError("선택한 스테이지가 존재하지 않습니다.");
         }
     }
+
+    public GameObject ClickStage(string s)
+    {
+        //클릭한 버튼의 스테이지 프리펩을 가져온다
+        GetStage(s);
+        //카메라 무빙 상태 비활성화
+        IsMoving = false;
+
+        GimmicksAmount = Stageload.instance.SearchStageObjectsAmount(world, stage);
+
+
+        return Stage;
+    }
+
+
+
     /// <summary>
     /// 씬 로드 이벤트
     /// </summary>
@@ -130,8 +154,11 @@ public class StageManager : MonoBehaviour
         if (arg0.name == "Ingame")
         {
             print("SceneManager_sceneLoaded: Ingame");
-            //스테이지 프리팹 생성후
+            //스테이지 프리팹 생성
             GameObject newstage = Instantiate(Stage);
+            //기믹 오브젝트 갯수 설정
+            //SetupGimmicks 스크립트 Start 함수에서 갯수 설정됨
+            //GameObject.Find("ShowCase").GetComponent<ShowcaseGenerator>().SetupGimmicks(GimmicksAmount);
         }
         else if(arg0.name == "Stage")
         {
@@ -151,4 +178,5 @@ public class StageManager : MonoBehaviour
         //print(v);
         CurrentWorld = v;
     }
+    
 }

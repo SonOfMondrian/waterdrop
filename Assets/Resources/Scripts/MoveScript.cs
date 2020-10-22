@@ -180,7 +180,7 @@ public class MoveScript : MonoBehaviour
 
     public void IncreaseRemaining()
     {
-        Showcase.GetComponent<GimmickPaneltest>().Remove();
+        Showcase.GetComponent<GimmickPanel>().Remove();
     }
 
     public void SelectAnimation(bool b)

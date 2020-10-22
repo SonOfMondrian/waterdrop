@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4104707402668466757}
   - component: {fileID: 4104707402668466756}
+  - component: {fileID: 5610249709841463618}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -48,3 +49,15 @@ MonoBehaviour:
   maxWorld: 3
   ismoving: 0
   currentworld: 1
+--- !u!114 &5610249709841463618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4104707402668466755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f202480ea1e81342b1b1d3a8dc76d37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
