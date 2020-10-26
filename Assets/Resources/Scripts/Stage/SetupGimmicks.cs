@@ -9,7 +9,7 @@ using UnityEngine;
 public class SetupGimmicks : MonoBehaviour
 {
     GameObject Showcase;
-    [SerializeField]
+    [SerializeField][Tooltip("0:Tree 1:Metal 2:Amp 3:Gun 4:Gravity")]
     int[] Gimmicks = new int[5]; //0:Tree 1:Metal 2:Amp 3:Gun 4:Gravity
 
 

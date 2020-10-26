@@ -22,12 +22,6 @@ public class ShowcaseGenerator : MonoBehaviour
         GimmickPrefs.Add(Resources.Load<GameObject>("Prefabs/UIs/ShowcaseGun"));
         GimmickPrefs.Add(Resources.Load<GameObject>("Prefabs/UIs/ShowcaseGravity"));
 
-
-        //TreeShowcasePref = Resources.Load<GameObject>("Prefabs/UIs/ShowcaseTree");
-        //MetalShowcasePref = Resources.Load<GameObject>("Prefabs/UIs/ShowcaseMetal");
-        //AmpShowcasePref = Resources.Load<GameObject>("Prefabs/UIs/ShowcaseAmp");
-        //GunShowcasePref = Resources.Load<GameObject>("Prefabs/UIs/ShowcaseGun");
-        //GravityShowcasePref = Resources.Load<GameObject>("Prefabs/UIs/ShowcaseGravity");
     }
 
     public void SetupGimmicks(int[] gimmicks)

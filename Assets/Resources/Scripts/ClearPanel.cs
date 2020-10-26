@@ -32,7 +32,16 @@ public class ClearPanel : MonoBehaviour
     /// </summary>
     public void ClickNextButton()
     {
-        //구현중
+        //다음 스테이지 오브젝트를 가져온다
+        GameObject nextStage= StageManager.instance.GetNextStage();
+        if(nextStage == null)
+        {
+            GameMng.instance.Stage();
+        }
+        else
+        {
+            GameMng.instance.Restart();
+        }
     }
 
     /// <summary>

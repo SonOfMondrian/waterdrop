@@ -13,9 +13,10 @@ public class Pot : MonoBehaviour
     private int GoalWater;
     
     /// <summary>
-    /// 현재 남은 물 갯수
+    /// 현재 남은 물 갯수 (초기화 X)
     /// </summary>
     [SerializeField]
+    [Tooltip("초기화 X, 0으로 설정할것")]
     private int curwater;
 
     public int CurWater
@@ -24,13 +25,14 @@ public class Pot : MonoBehaviour
         set
         {
             curwater += value;
-
             
-            
-            text.text = CurWater.ToString();
 
-            if (CurWater == 0)
+            if (CurWater <= 0)
+            {
+                curwater = 0;
                 GameMng.instance.Clear();
+            }
+            text.text = CurWater.ToString();
         }
     }
 

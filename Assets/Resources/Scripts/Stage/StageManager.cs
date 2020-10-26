@@ -178,5 +178,22 @@ public class StageManager : MonoBehaviour
         //print(v);
         CurrentWorld = v;
     }
+
+    /// <summary>
+    /// 게임이 클리어되고 다음 스테이지 버튼을 클릭시 호출
+    /// </summary>
+    public GameObject GetNextStage()
+    {
+        //현재 스테이지의 변수를 1++해서 다음 스테이지 가져옴
+        int tmpnextstage = int.Parse(stage);
+        tmpnextstage++;
+        string NextStage = world + "-" + tmpnextstage;
+        print("다음 스테이지" + NextStage);
+        GetStage(NextStage);
+        if (Stage == null)
+            return null;
+        else
+            return Stage;
+    }
     
 }

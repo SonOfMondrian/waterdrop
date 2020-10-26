@@ -34,6 +34,11 @@ public class GameMng : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// 일시정지 코루틴 false면 재개, true면 일시정지
+    /// </summary>
+    /// <param name="ispause"></param>
+    /// <returns></returns>
     public IEnumerator PauseCorutine(bool ispause)
     {
         while (true)
@@ -77,7 +82,8 @@ public class GameMng : MonoBehaviour
     }
     void Start()
     {
-
+        //다른 맵에서 클리했을시 일시정지 됐기 때문에 다음맵으로 넘어가는 버튼을 클릭하면 멈춰있기 때문에 여기서 1로 다시 초기화
+        Time.timeScale = 1.0f;
         //DontDestroyOnLoad(this);
         SetisPause(false);
     }
@@ -92,10 +98,15 @@ public class GameMng : MonoBehaviour
     /// </summary>
     public void Clear()
     {
-        //SceneManager.LoadScene("Clear");
-        ClearPanel.GetComponent<ClearPanel>().Popup();
-
-        //타임 스케일 점점 줄이기(슬로우 모션)
+        if (!b_ispause)
+        {
+            print("Clear");
+            b_IsPause = true;
+            
+            ClearPanel.GetComponent<ClearPanel>().Popup();
+            //타임 스케일 점점 줄이기(슬로우 모션)
+            
+        }
     }
     public void Restart()
     {

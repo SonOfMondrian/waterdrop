@@ -25,7 +25,7 @@ public class GimmickPanel : MonoBehaviour
         //ex)ShowcaseTree ->Tree
         string trim = transform.name.Remove(0, 8);
         trim = trim.Remove(trim.Length - 7);
-        print(trim);
+        //print(trim);
         prefab = Resources.Load<GameObject>("Prefabs/Gimmicks/" + trim);
         
         RemainPanelText = transform.Find("RemainPanel").Find("Text").GetComponent<Text>();
